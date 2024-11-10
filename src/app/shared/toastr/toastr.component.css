@@ -1,0 +1,35 @@
+.toastr-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    height: 2rem;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+    align-items: center;
+    border-radius: 7px;
+    font-weight: bold;
+    z-index: 1000;
+  }
+  
+  .toastr-message.success {
+    background-color: #e3ffdf;
+    color: rgb(41, 211, 29);
+  }
+  
+  .toastr-message.error {
+    background-color: #ffe1df;
+    color: rgb(211, 29, 29);
+}
+
+.toastr-message.info {
+     background-color: #dfecff;
+     color: rgb(29, 105, 211);
+  }
+  
+  .toastr-message.warning {
+    background-color: #fff4df;
+    color: rgb(211, 144, 29);
+  }
+  

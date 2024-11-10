@@ -1,0 +1,25 @@
+<div class="sent">
+    <div class="sent-nav">
+        <div class="head">
+            <h3>All Sent Emails</h3>
+            <input type="search" placeholder="Search">
+        </div>
+        <div class="sent-emails">
+            @for (item of sentEmails; track $index) {
+                <div [routerLink]="['/dashboard/sent']" [queryParams]="{id: item.to[0]}" class="email-card">
+                    <div class="top-details">
+                        <div class="to-subject">
+                            <h4 class="truncate-sentence">{{item.subject}}</h4>
+                            <span>{{item.to[0]}}</span>
+                        </div>
+                        <span >{{item.createdAt | formatDate }}</span>
+                    </div>
+                    <p class="truncate-text" [innerHTML]="htmlToText(item.message)"></p>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="emails">
+       <router-outlet/>
+    </div>
+</div>

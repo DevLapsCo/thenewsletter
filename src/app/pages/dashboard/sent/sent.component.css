@@ -1,0 +1,91 @@
+.sent{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.sent-nav{
+    width: 40vh;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 10px 0 10px #00000020;
+    border-right: 1px solid rgb(216, 216, 216);
+}
+
+.emails{
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    width: 100%;
+}
+
+.head{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.head h3{
+    font-size: 30px;
+}
+
+.head input{
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid #b0b0b0;
+    padding: 0 10px;
+    font: 300;
+}
+
+.sent-emails{
+    display: flex;
+    flex-direction: column;
+}
+
+.email-card{
+    width: 100%;
+    padding: 20px;
+    border-top: 1px solid rgb(225, 225, 225);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    cursor: pointer;
+    transition: 0.2s all ease-in-out;
+}
+
+.email-card:hover{
+    background-color: #eee;
+}
+
+.top-details{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.top-details span{
+    font-size: 12px;
+    color: #949494;
+}
+
+.email-card p{
+    font-size: 13px !important;
+}
+
+.to-subject{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.truncate-sentence {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 22vh;
+  }
+  

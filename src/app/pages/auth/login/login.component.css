@@ -1,0 +1,25 @@
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img{
+    width: 35px;
+}
+
+.google-oauth{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1.5px solid grey;
+    padding: 10px;
+    border-radius: 7px;
+    cursor: pointer;
+    gap: 20px;
+}
+
+.google-oauth img{
+    width: 20px;
+}

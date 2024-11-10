@@ -1,0 +1,99 @@
+.nav{
+    width: 30vh;
+    height: 100%;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.first, .last{
+    width: 100%;
+}
+
+.first{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+ul{
+    list-style: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+ul li {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+ul li a {
+    width: 100%;
+    padding: 7px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+ul li a:hover {
+    background-color: #ddd;
+}
+
+.last .menu ul li:last-child a{
+    padding: 0;
+}
+
+.last .menu ul li:last-child a:hover{
+    background-color: #ffff;
+}
+
+.profile{
+    display: flex;
+    gap: 10px;
+}
+
+.last .menu ul {
+    gap: 30px;
+}
+
+.circle{
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 50px;
+    background-color: #000000;
+    display: flex;
+}
+
+.new-email{
+    background-image: linear-gradient(
+        45deg,
+        #001D57,
+        #0057FF
+    );
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.new-email span{
+    font-size: 18px;
+}
+
+.details h3{
+    font-size: 15px;
+}
+
+.details span{
+    font-size: 12px;
+}
+
+.menu ul li a{
+    font-weight: 400;
+}

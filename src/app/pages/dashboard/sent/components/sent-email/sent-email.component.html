@@ -1,0 +1,9 @@
+<div class="email">
+    <div class="subject">
+        <h3>{{email.subject}}</h3>
+    </div>
+    <div class="to">
+        <span>{{email.to[0]}}</span>
+    </div>
+    <div class="content" [innerHTML]="sanitizedMessage(email.message)"></div>
+</div>

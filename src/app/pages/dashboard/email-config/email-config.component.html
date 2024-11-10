@@ -1,0 +1,40 @@
+<div class="config">
+    <div class="container">
+      <div class="head">
+        <h3>Email Configurations</h3>
+        <p-tag *ngIf="isValid === true" severity="success" value="Valid"></p-tag>
+        <div *ngIf="isValid === false" class="loader" style="width: 80px;">
+          <p-tag *ngIf="isValid === false" severity="danger" value="Invalid"></p-tag>
+          <!-- <p-skeleton height="1.5rem" styleClass="mb-2"></p-skeleton> -->
+        </div>
+      </div>
+  
+      <div class="config-forms">
+        <form [formGroup]="form">
+          <div class="input">
+            <label for="host">Host</label>
+            <input formControlName="host" type="text" placeholder="smtp.yourhostprovider.com">
+          </div>
+          <div class="input">
+            <label for="email">Email</label>
+            <input formControlName="username" type="text" placeholder="youremail@provider.com">
+          </div>
+          <div class="input">
+            <label for="password">Password</label>
+            <input formControlName="password" type="password" placeholder="your-password">
+          </div>
+          <div class="input">
+            <label for="port">Port</label>
+            <input formControlName="port" type="text" placeholder="e.g. 587">
+            <span style="font-size: 10px; color: grey;">We recommend using 587 for convenience.</span>
+          </div>
+        </form>
+       @if(isLoading){
+        <button><app-loader/></button>
+       } @else {
+        <button (click)="validateProvider()" [disabled]="!form.valid">Submit</button>
+       }
+      </div>
+    </div>
+  </div>
+  

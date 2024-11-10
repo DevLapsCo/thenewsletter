@@ -1,0 +1,74 @@
+.config{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.container{
+    width: 100%;
+    max-inline-size: 70rem;
+    margin-block-start: 40px;
+    max-width: 700px;
+}
+
+.head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.head h3{
+    font-size: 30px;
+}
+
+::ng-deep .p-tag{
+    padding: 3px 10px;
+}
+
+.config-forms{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.config-forms form{
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+    margin-block-start: 7vh;
+    gap: 30px;
+}
+
+.input{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input label{
+    font-size: 13px;
+    color: grey;
+}
+
+.input input{
+    height: 30px;
+    border: 1px solid #bbbbbb;
+    border-radius: 8px;
+    padding: 0 10px;
+}
+
+.input input:focus{
+    outline: 3px solid #0055ff70;
+    box-shadow: none;
+}
+
+.config-forms button{
+    background-color: #000;
+    border-radius: 8px;
+    height: 30px;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,33 @@
+<div class="config">
+    <div class="container">
+        <div class="head">
+            <h3>Settings</h3>
+            <!-- @if (true) {
+                <p-tag severity="success" value="" />
+            } @else {
+                <div class="loader" style="width: 80px;">
+                    <p-skeleton height="1.5rem" styleClass="mb-2" />
+                </div>
+            } -->
+        </div>
+        <div class="config-forms">
+            <form action="">
+                <div class="input">
+                    <label for="">First Name</label>
+                    <input type="text" placeholder="smtp.yourhostprovider.com">
+                </div>
+                <!-- <div class="flex"> -->
+                    <div class="input">
+                        <label for="">Last Name</label>
+                        <input type="text" placeholder="youremail@provider.com">
+                    </div>
+                    <div class="input">
+                        <label for="">Email</label>
+                        <input type="text" placeholder="your-password">
+                    </div>
+                <!-- </div> -->
+            </form>
+            <button [disabled]="true">Update</button>
+        </div>
+    </div>
+</div>
