@@ -1,4 +1,6 @@
 import { HttpInterceptorFn } from '@angular/common/http';
+import { inject } from '@angular/core';
+import { UserService } from '../../services/user-data/user.service';
 
 export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
   // Check for a custom header indicating to skip this interceptor
@@ -8,6 +10,9 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
   
   // Get the JWT token from localStorage
   const token = localStorage.getItem('jwt_tkn');
+  // var refreshToken = inject(UserService)
+
+  // refreshToken.refreshToken()
   
   if (token) {
     // Clone the request and add the token to the Authorization header

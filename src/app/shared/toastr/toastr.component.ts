@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ToastrMessage } from '../../../utils/constants/toaster.interface';
-import { CustomToasterService } from '../../../services/custom-toaster/custom-toaster.service';
 import { NgClass } from '@angular/common';
+import { CustomToasterService } from '../../services/custom-toaster/custom-toaster.service';
+import { ToastrMessage } from '../../utils/constants/toaster.interface';
 
 @Component({
   selector: 'app-toastr',

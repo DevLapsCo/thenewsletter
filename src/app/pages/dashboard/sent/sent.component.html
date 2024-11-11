@@ -6,15 +6,15 @@
         </div>
         <div class="sent-emails">
             @for (item of sentEmails; track $index) {
-                <div [routerLink]="['/dashboard/sent']" [queryParams]="{id: item.to[0]}" class="email-card">
+                <div [routerLink]="['/dashboard/sent']" [queryParams]="{id: item.id}" class="email-card">
                     <div class="top-details">
                         <div class="to-subject">
                             <h4 class="truncate-sentence">{{item.subject}}</h4>
-                            <span>{{item.to[0]}}</span>
+                            <span class="truncate-sentence">{{item.toEmails}}</span>
                         </div>
-                        <span >{{item.createdAt | formatDate }}</span>
+                        <span >{{item.sentAt | formatDate}}</span>
                     </div>
-                    <p class="truncate-text" [innerHTML]="htmlToText(item.message)"></p>
+                    <p class="truncate-text" [innerHTML]="htmlToText(item.htmlContent)"></p>
                 </div>
             }
         </div>

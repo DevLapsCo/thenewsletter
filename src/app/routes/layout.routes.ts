@@ -5,6 +5,7 @@ import { SentComponent } from "../pages/dashboard/sent/sent.component";
 import { SentEmailComponent } from "../pages/dashboard/sent/components/sent-email/sent-email.component";
 import { SettingsComponent } from "../pages/dashboard/settings/settings.component";
 import { EmailConfigComponent } from "../pages/dashboard/email-config/email-config.component";
+import { AddTemplatesComponent } from "../pages/dashboard/add-templates/add-templates.component";
 
 export const routes : Routes = [
     {
@@ -27,6 +28,10 @@ export const routes : Routes = [
     {
         path: 'settings',
         component: SettingsComponent
+    },
+    {
+        path: 'add-template',
+        component: AddTemplatesComponent
     },
     {
         path: 'sent',

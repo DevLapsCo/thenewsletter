@@ -20,9 +20,12 @@ export class TemplatesService {
     const formData = new FormData();
     formData.append('title', template.title);
     formData.append('templateVariables', template.templateVariables);
-    formData.append('attachments', JSON.stringify(template.attachments));
+    formData.append('attachments', template.attachments);
     formData.append('templateKeyName', template.templateKeyName);
     formData.append('templateFile', template.templateFile);
+    formData.append('sampleKeyName', template.sampleKeyName);
+    formData.append('htmlContent', template.htmlContent);
+    formData.append('samplePicture', template.samplePicture);
 
     return this.httpClient.post<any>(`${this.API_PATH}/`, formData);
   }
@@ -43,12 +46,12 @@ export class TemplatesService {
   }
 
   // Helper method to convert template variables from JSON string back to object
-  parseTemplateVariables(jsonString: string): { [key: string]: any } {
-    try {
-      return JSON.parse(jsonString);
-    } catch (e) {
-      console.error('Error parsing template variables:', e);
-      return {};
-    }
-  }
+  // parseTemplateVariables(jsonString: string): { [key: string]: any } {
+  //   try {
+  //     return JSON.parse(jsonString);
+  //   } catch (e) {
+  //     console.error('Error parsing template variables:', e);
+  //     return {};
+  //   }
+  // }
 }

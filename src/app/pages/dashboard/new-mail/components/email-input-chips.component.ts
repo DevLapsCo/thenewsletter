@@ -1,6 +1,6 @@
 // email-chips.component.ts
 import { NgClass, NgFor, NgIf } from '@angular/common';
-import { Component, forwardRef, Input } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -102,6 +102,7 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
 })
 export class EmailChipsComponent implements ControlValueAccessor {
   emails: string[] = [];
+  @Output() toEmails : EventEmitter<string[]> = new EventEmitter<string[]>();
   errorMessage: string = '';
   disabled: boolean = false;
   onChange: any = () => {};
@@ -138,6 +139,7 @@ export class EmailChipsComponent implements ControlValueAccessor {
       if (!this.emails.includes(email)) {
         this.emails.push(email);
         this.onChange(this.emails);
+        this.toEmails.emit(this.emails)
         this.errorMessage = '';
       } else {
         this.errorMessage = 'Email already exists';
@@ -158,6 +160,7 @@ export class EmailChipsComponent implements ControlValueAccessor {
   removeEmail(index: number): void {
     this.emails.splice(index, 1);
     this.onChange(this.emails);
+    this.toEmails.emit(this.emails)
   }
 
   private validateEmail(email: string): boolean {

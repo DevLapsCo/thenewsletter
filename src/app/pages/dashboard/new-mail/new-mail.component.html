@@ -2,20 +2,20 @@
 
     <div class="editor">
         <div class="to input">
-            <app-email-chips placeholder="To"/>
+            <app-email-chips (toEmails)="getToEmails($event)" placeholder="To"/>
         </div>
         <div class="subject input">
-            <input type="text" placeholder="Subject" name="" id="">
+            <input type="text"  placeholder="Subject" [(ngModel)]="subject" name="subject" id="">
         </div>
         <div class="cc input">
-            <app-email-chips placeholder="Cc"/>
+            <app-email-chips (toEmails)="getToCC($event)" placeholder="Cc"/>
         </div>
         <div class="bcc input">
-            <app-email-chips placeholder="Bcc"/>
+            <app-email-chips (toEmails)="getToBcc($event)" placeholder="Bcc"/>
         </div>
         <div class="preview">
             <!-- <textarea [innerHTML]="sanitizedMessage(getInnerHTML(editorContent))" cols="" rows=""></textarea>  -->
-            <div class="content" [innerHTML]="sanitizedMessage(editorContent)"></div>
+            <div class="content" [innerHTML]="sanitizedMessage(itemSelected.htmlContent)"></div>
         </div>
     </div>
 
@@ -31,22 +31,44 @@
    <div class="edit-data">
     <div class="head">
         <h3>Email Template</h3>
+        <span (click)="toggleTemaplte()">Choose template</span>
     </div>
-   <div class="fields">
-    <textarea class="textarea" [(ngModel)]="editorContent" name="" id=""></textarea>
-    <!-- @for (item of getKeys(); track item) {
-        <div class="input-group">
-            <label class="label">{{item}}</label>
-            <textarea 
-                [(ngModel)]="templateFields[item]" 
-                name="{{item}}" 
-                class="textarea"
-                rows="3"
-                placeholder="Enter {{item}}..."
-            ></textarea>
-        </div>
-    } -->
-        <button class="send-button">Send Email</button>
+   <div class="field-template">
+   @if (isTemplateToggle) {
+    <div class="all-templates">
+      @if(templates.length > 0){
+        @for (item of templates; track $index) {
+            <div (click)="getData(item)" class="card">
+                <img [src]="item.samplePicture" alt="">
+                <span>{{item.title}}</span>
+            </div>
+        }
+      } @else {
+        <span>No Template Available</span>
+      }
+    </div>
+   } @else {
+    <div class="fields">
+        @for (item of getKeys(itemSelected.templateVariables); track item) {
+            <div class="input-group">
+                <label class="label">{{item}}</label>
+                <textarea 
+                    [(ngModel)]="templateFields[item]" 
+                    name="{{item}}" 
+                    class="textarea"
+                    rows="3"
+                    placeholder="Enter {{item}}..."
+                ></textarea>
+            </div>
+        }
+            @if(isLoading){
+                <app-loader/>
+            } @else {
+                <button (click)="sendEmail()" class="send-button">Send Email</button>
+            }
+    </div>
+   }
+    
    </div>
    </div>
 
