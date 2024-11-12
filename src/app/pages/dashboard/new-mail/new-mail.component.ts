@@ -10,11 +10,13 @@ import { LoaderComponent } from "../../../shared/loader/loader.component";
 import { ProviderValidationService } from '../../../services/providerValidation/provider-validation.service';
 import { EmailService } from '../../../services/email/email.service';
 import { CustomToasterService } from '../../../services/custom-toaster/custom-toaster.service';
+import { NgFor } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-mail',
   standalone: true,
-  imports: [QuillModule, FormsModule, ChipsModule, EmailChipsComponent, LoaderComponent],
+  imports: [QuillModule,  NgFor, FormsModule, ChipsModule, EmailChipsComponent, LoaderComponent],
   templateUrl: './new-mail.component.html',
   styleUrl: './new-mail.component.css'
 })
@@ -24,9 +26,9 @@ export class NewMailComponent implements OnInit{
   templateService = inject(TemplatesService)
   fileDownloadService = inject(FileService)
   emailService = inject(EmailService)
+  route = inject(Router)
 
   ngOnInit(): void {
-    this.htmlToText(this.editorContent)
     this.getAllTemplates()
   }
 
@@ -35,6 +37,8 @@ export class NewMailComponent implements OnInit{
   bccEmails = [];
   subject! : string;
   templates : Array<any> = []
+
+  body = "Your Email Goes here"
 
   isTemplateToggle = false;
 
@@ -80,7 +84,7 @@ export class NewMailComponent implements OnInit{
     this.bccEmails = item;
   }
 
-  itemSelected : any = {};
+  itemSelected : any = null;
 
   getData(item : any){
    this.itemSelected = item;
@@ -93,17 +97,10 @@ export class NewMailComponent implements OnInit{
   // Option 3: Store in a property
   fieldKeys = Object.keys(this.templateFields);
 
-  editorContent = ``;
 
-
-
-sanitizedMessage(email: any): SafeHtml {
-  return this.sanitizer.bypassSecurityTrustHtml(email);
-}
-
-getInnerHTML(val : any){
-  return val.replace(/(<([^>]+)>)/ig,'');
-}
+// getInnerHTML(val : any){
+//   return val.replace(/(<([^>]+)>)/ig,'');
+// }
 
 
 toggleTemaplte(){
@@ -117,6 +114,8 @@ getAllTemplates(){
         }
     })
 }
+
+htmlBody! : string;
 
   quillConfig = {
     modules: {
@@ -144,6 +143,9 @@ getAllTemplates(){
   }
 
   onContentChanged(html : any ) {
+    // this.htmlBody = html.html;
+    // console.log(this.templateFields);
+    
     console.log('Content changed', html);
   }
 
@@ -151,30 +153,29 @@ getAllTemplates(){
     console.log('Selection changed', range);
   }
 
-  rawHTML = {
-    html: this.editorContent,
-    text: this.editorContent
-  }
 
-  sameData(){
-    this.rawHTML.html = ''
-  }
-
-  htmlToText(html: string): string {
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = html;
-    return tempDiv.textContent || tempDiv.innerText || '';
-  }
-
-  // Tesr
+ 
 
   isLoading = false;
 
   providerService = inject(ProviderValidationService)
   toaster = inject(CustomToasterService)
-  
+
+ 
+  // Replace placeholders dynamically based on data fields
+//   generateHtmlContent(template: string, data: Record<string, any>): string {
+//     return template.replace(/\$\{(.*?)\}/g, (_, key) => data[key] || '');
+//   }
+
+  // Sanitize and return the final content
+  sanitizedMessage(): SafeHtml {
+    // const content = this.generateHtmlContent(this.itemSelected.htmlContent, this.itemSelected.templa);
+    return this.sanitizer.bypassSecurityTrustHtml(this.itemSelected.htmlContent);
+  }
+
 
   sendEmail() {
+    this.isLoading = true;
     console.log(this.templateFields);
     if(this.templateFields != null){
         const id = localStorage.getItem('uid')
@@ -182,11 +183,14 @@ getAllTemplates(){
         if(id != null)
         this.providerService.getAProvider(id).subscribe({
          next: (n :any ) => {
-            this.emailService.sendEmail({ templateVariables: this.templateFields, toEmails : this.toEmails, subject : this.subject, fromEmail : n.username, templateFile : this.itemSelected.htmlContent}, id, n.id).subscribe({
+            this.emailService.sendEmail({ templateVariables: this.templateFields, toEmails : this.toEmails, subject : this.subject, fromEmail : n.username, templateFile : this.itemSelected.templateKeyName}, id, n.id).subscribe({
                 next: (n: any) => {
+                    this.isLoading = false;
+                    this.route.navigate(['/dashboard/sent'])
                     this.toaster.show("success", "Email Sent Successfully!")
                 }, 
                 error: (e : any) => {
+                    this.isLoading = false;
                     this.toaster.show("error", "Email not Successful!")
                 }
             })

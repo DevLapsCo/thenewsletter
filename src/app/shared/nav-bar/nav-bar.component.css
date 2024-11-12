@@ -60,6 +60,10 @@ ul li a:hover {
 .last .menu ul {
     gap: 30px;
 }
+.logo span {
+    font-size: 20px;
+    font-weight: 600;
+}
 
 .circle{
     width: 40px;
@@ -68,6 +72,25 @@ ul li a:hover {
     border-radius: 50px;
     background-color: #000000;
     display: flex;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.logout{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    box-shadow: 0 0 5px #00000020;
+    margin-block-end: 20px;
+    border-radius: 8px;
+}
+
+.logout span{
+    font-size: 15px;
+    color: red;
 }
 
 .new-email{

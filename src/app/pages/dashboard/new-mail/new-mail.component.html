@@ -14,19 +14,23 @@
             <app-email-chips (toEmails)="getToBcc($event)" placeholder="Bcc"/>
         </div>
         <div class="preview">
+            <!-- @if(itemSelected != null){
+                <div class="content" [innerHTML]="sanitizedMessage()"></div>
+            } @else {
+                <span>No Template Selected</span>
+            } -->
             <!-- <textarea [innerHTML]="sanitizedMessage(getInnerHTML(editorContent))" cols="" rows=""></textarea>  -->
-            <div class="content" [innerHTML]="sanitizedMessage(itemSelected.htmlContent)"></div>
         </div>
+        <quill-editor width="1100px" classes="editor" [(ngModel)]="templateFields!.body"
+        [modules]="quillConfig!.modules"
+        [formats]="quillConfig!.formats"
+        placeholder="Your email body here."
+        (onEditorCreated)="onEditorCreated($event)"
+        (onContentChanged)="onContentChanged($event)"
+        (onSelectionChanged)="onSelectionChanged($event)">
+    </quill-editor>
     </div>
 
-    <!-- <quill-editor width="1100px" classes="editor" [(ngModel)]="editorContent"
-    [modules]="quillConfig!.modules"
-    [formats]="quillConfig!.formats"
-    placeholder="Job Description..."
-    (onEditorCreated)="onEditorCreated($event)"
-    (onContentChanged)="onContentChanged($event)"
-    (onSelectionChanged)="onSelectionChanged($event)">
-</quill-editor> -->
 
    <div class="edit-data">
     <div class="head">
@@ -35,37 +39,48 @@
     </div>
    <div class="field-template">
    @if (isTemplateToggle) {
-    <div class="all-templates">
-      @if(templates.length > 0){
+       @if(templates.length > 0){
+          <div class="all-templates">
         @for (item of templates; track $index) {
             <div (click)="getData(item)" class="card">
                 <img [src]="item.samplePicture" alt="">
                 <span>{{item.title}}</span>
             </div>
         }
-      } @else {
-        <span>No Template Available</span>
-      }
     </div>
+      } @else {
+        <span class="w-full flex justify-center text-lg font-semibold text-gray-600 bg-gray-200 border border-gray-300 rounded-md px-3 py-2 shadow-sm">
+            No Template Available
+        </span>
+        
+              }
    } @else {
     <div class="fields">
-        @for (item of getKeys(itemSelected.templateVariables); track item) {
+       @if(itemSelected != null){
+        <ng-container *ngFor="let item of getKeys(itemSelected.templateVariables)">
+           @if(item == "body"){
+            <!-- <span>Please add your content in the editor!</span> -->
+           } @else {
             <div class="input-group">
-                <label class="label">{{item}}</label>
-                <textarea 
-                    [(ngModel)]="templateFields[item]" 
-                    name="{{item}}" 
-                    class="textarea"
-                    rows="3"
-                    placeholder="Enter {{item}}..."
+                <label>{{ item }}</label>
+                <textarea
+                  [(ngModel)]="templateFields[item]"
+                  placeholder="Enter {{ item }}..."
                 ></textarea>
-            </div>
-        }
+              </div>
+           }
+          </ng-container> 
+        
             @if(isLoading){
                 <app-loader/>
             } @else {
                 <button (click)="sendEmail()" class="send-button">Send Email</button>
             }
+       } @else {
+        <span class="text-lg font-semibold text-blue-600 bg-blue-100 border border-blue-300 rounded-md px-3 py-2 shadow-md">
+            Please select a template!
+        </span>
+               }
     </div>
    }
     

@@ -1,7 +1,7 @@
 <div class="nav">
     <div class="first">
         <div class="logo">
-            <span>NewsLetter</span>
+            <span>The NewsLetter</span>
         </div>
         <div class="menu">
             <ul>
@@ -12,7 +12,9 @@
                 <!-- <li><a>Templates</a></li> -->
                 <li><a class="navigate" [routerLink]="['email-config']">Email Configuration</a></li>
                 <li><a class="navigate" [routerLink]="['settings']">Settings</a></li>
-                <li><a class="navigate" [routerLink]="['add-template']">Add Template</a></li>
+                @if (isAdmin) {
+                    <li><a class="navigate" [routerLink]="['add-template']">Add Template</a></li>
+                }
             </ul>
         </div>
     </div>
@@ -21,13 +23,19 @@
         <div class="menu">
             <ul>
                 <li><a class="navigate">
+                    <div class="logout">
+                        <span class="material-symbols-outlined">logout</span>
+                        <span>Logout</span>
+                    </div>
+                   @if(userData != null){
                     <div class="profile">
-                        <span class="circle"></span>
+                        <span class="circle">{{userData.firstName.charAt(0) + userData.lastName.charAt(0)}}</span>
                         <span class="details">
-                            <h3>Pandit Alabi</h3>
-                            <span>{{"pandit.alabi@devlaps.co"}}</span>
+                            <h3>{{userData!.firstName + " " + userData.lastName}}</h3>
+                            <span>{{userData.email}}</span>
                         </span>
                     </div>
+                   }
                 </a></li>
             </ul>
         </div>

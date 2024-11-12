@@ -1,4 +1,4 @@
-<div class="px-4 py-6">
+<div class="w-full container px-4 py-6">
     <ng-container *ngIf="email; else noEmailSelected">
       <div class="email bg-white border border-gray-300 rounded-md p-4">
         <div class="subject">
@@ -7,7 +7,12 @@
         <div class="to mt-2">
           <app-dropdown [options]="email.toEmails" [placeholder]="email.toEmails[0]"/>
         </div>
-        <div class="content" [innerHTML]="sanitizedMessage(email.htmlContent)"></div>
+        <iframe #emailIframe
+        class="w-full mt-4 content"
+        
+        sandbox="allow-same-origin"
+      ></iframe>
+        <!-- <div class="content" [innerHTML]="sanitizedMessage(email.htmlContent)"></div> -->
       </div>
     </ng-container>
 

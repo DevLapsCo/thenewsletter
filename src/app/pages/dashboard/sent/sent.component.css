@@ -43,6 +43,7 @@
 .sent-emails{
     display: flex;
     flex-direction: column;
+    overflow-y: scroll;
 }
 
 .email-card{
