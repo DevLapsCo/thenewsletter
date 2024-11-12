@@ -92,5 +92,14 @@
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 22vh;
-  }
-  
+}
+
+@media screen and (max-width : 786px) {
+    .sent-nav{
+        width: 100%;
+    }
+
+    .emails{
+        display: none;
+    }
+}

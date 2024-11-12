@@ -29,7 +29,7 @@
                 </div>
                             } @else {
                 @for (item of sentEmails; track $index) {
-                    <div [routerLink]="['/dashboard/sent']" [queryParams]="{id: item.id}" class="email-card">
+                    <div (click)="isSmallScreenView()" [routerLink]="['/dashboard/sent']" [queryParams]="{id: item.id}" class="email-card">
                         <div class="top-details">
                             <div class="to-subject">
                                 <h4 class="truncate-sentence">{{item.subject}}</h4>
@@ -46,4 +46,8 @@
     <div class="emails">
        <router-outlet/>
     </div>
+
+    <p-sidebar [(visible)]="sidebarVisible" [fullScreen]="true">
+        <router-outlet/>
+    </p-sidebar>
 </div>

@@ -2,13 +2,24 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { API_BASE_URL } from '../../utils/constants/api.base';
+import { UserService } from '../user-data/user.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TemplatesService {
 
-  constructor() { }
+  constructor(private userService : UserService, private router : Router) { 
+    this.userService.refreshToken().subscribe({
+      next: (n: any) => {},
+      error: (e) => {
+        // console.log(e);
+        localStorage.clear();
+        router.navigate(['']);
+      },
+    });
+  }
 
   private httpClient = inject(HttpClient);
   private readonly API_PATH = `${API_BASE_URL}/api/v1/templates`;

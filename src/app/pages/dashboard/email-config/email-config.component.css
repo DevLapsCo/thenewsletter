@@ -74,3 +74,19 @@
     justify-content: center;
     align-items: center;
 }
+
+@media screen and (max-width: 786px) {
+
+    .head, .config-forms{
+        padding: 0 20px;
+    }
+
+    .config-forms form{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    form .input, input {
+        width: 100%;
+    }
+}

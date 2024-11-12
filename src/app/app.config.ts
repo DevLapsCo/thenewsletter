@@ -2,15 +2,16 @@ import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { FormatDatePipe } from './shared/tiome-format/time-format.pipe';
 import { provideQuillConfig } from 'ngx-quill';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { jwtInterceptor } from './utils/interceptors/jwt-interceptors.interceptor';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
-  providers: [
+  providers: [ 
     provideRouter(routes),
+    provideNoopAnimations(),
     provideQuillConfig({
       modules: {
         syntax: true
@@ -21,3 +22,4 @@ export const appConfig: ApplicationConfig = {
     // provideCharts({ registerables: [BarController, Legend, Colors] }),
   ]
 };
+

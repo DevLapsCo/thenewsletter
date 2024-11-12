@@ -41,3 +41,66 @@
         </div>
     </div>
 </div>
+
+<div class="small-nav">
+   <div class="left">
+    <span (click)="toggleNavBar()" class="material-symbols-outlined">menu</span>
+    <span>The NewsLetter</span>
+   </div>
+   <div class="right">
+           <!-- <span (click)="logout()" class="logout-small material-symbols-outlined">logout</span> -->
+        <span class="small">@if(userData != null){
+            {{userData.firstName.charAt(0).toUpperCase() + (userData.lastName ? userData?.lastName.charAt(0).toUpperCase() : "")}}   
+        } @else {
+            <span style="font-variation-settings: 'FILL' 1; font-size: 17px;" class="material-symbols-outlined">person</span>
+        }
+    </span>
+   </div>
+</div>
+
+<p-sidebar [(visible)]="sidebarVisible">
+    <div class="nav-small">
+        <div class="first">
+            <div class="logo">
+                <span>The NewsLetter</span>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a  class="new-email" [routerLink]="['new-email']"><span class="material-symbols-outlined">add</span> New Mail</a></li>
+                    <!-- <li><a class="navigate" [routerLink]="['overview']">Overview</a></li> -->
+                    <li><a [routerLinkActive]="['activeRoute']" class="navigate" [routerLink]="['sent']">Sent</a></li>
+                    <!-- <li><a class="navigate">Draft</a></li> -->
+                    <!-- <li><a>Templates</a></li> -->
+                    <li><a [routerLinkActive]="['activeRoute']" class="navigate" [routerLink]="['email-config']">Email Configuration</a></li>
+                    <!-- <li><a class="navigate" [routerLink]="['settings']">Settings</a></li> -->
+                    @if (isAdmin) {
+                        <li><a [routerLinkActive]="['activeRoute']" class="navigate" [routerLink]="['add-template']">Add Template</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+        
+        <div class="last">
+            <div class="menu">
+                <ul>
+                    <li><a class="navigate">
+                        <div (click)="logout()" class="logout">
+                            <span class="material-symbols-outlined">logout</span>
+                            <span>Logout</span>
+                        </div>
+                       @if(userData != null){
+                        <div class="profile">
+                            <span class="circle">{{userData.firstName.charAt(0).toUpperCase() + (userData.lastName ? userData?.lastName.charAt(0).toUpperCase() : "")}}</span>
+                            <span class="details">
+                                <h3 style="text-transform: capitalize;" >{{userData!.firstName + " " + (userData?.lastName ? userData.lastName : "")}}</h3>
+                                <span>{{userData.email}}</span>
+                            </span>
+                        </div>
+                       }
+                    </a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+</p-sidebar>

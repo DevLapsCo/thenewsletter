@@ -8,19 +8,30 @@ import { ImplicitReceiver } from '@angular/compiler';
 import { FormsModule } from '@angular/forms';
 import { SkeletonModule } from 'primeng/skeleton';
 import { LoaderComponent } from "../../../shared/loader/loader.component";
+import { SidebarModule } from 'primeng/sidebar';
 
 @Component({
   selector: 'app-sent',
   standalone: true,
-  imports: [RouterOutlet, SkeletonModule, CommonModule, FormsModule, FormatDatePipe, RouterLink, LoaderComponent],
+  imports: [RouterOutlet, SkeletonModule, SidebarModule, CommonModule, FormsModule, FormatDatePipe, RouterLink, LoaderComponent],
   templateUrl: './sent.component.html',
   styleUrl: './sent.component.css',
 })
 export class SentComponent implements OnInit{
 [x: string]: any;
 
+sidebarVisible: boolean = false;
+
 ngOnInit(): void {
   this.getAllSentEmails();
+}
+
+isSmallScreenView(){
+  var screenWidth = window.screen.width
+
+  if(screenWidth <= 786){
+    this.sidebarVisible = true
+  }
 }
 
 isLoading = true;

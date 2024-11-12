@@ -1,13 +1,17 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { UserService } from '../../services/user-data/user.service';
+import { ButtonModule } from 'primeng/button';
+import { SidebarModule } from 'primeng/sidebar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-nav-bar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, ButtonModule, SidebarModule],
   templateUrl: './nav-bar.component.html',
-  styleUrl: './nav-bar.component.css'
+  styleUrl: './nav-bar.component.css',
+  providers: []
 })
 export class NavBarComponent implements OnInit{
 
@@ -18,6 +22,7 @@ export class NavBarComponent implements OnInit{
   userService = inject(UserService)
   router = inject(Router)
 
+  sidebarVisible: boolean = false;
   isAdmin = false;
 
   userData : any;
@@ -40,6 +45,10 @@ export class NavBarComponent implements OnInit{
   logout(){
     localStorage.clear();
     this.router.navigate([''])
+  }
+
+  toggleNavBar(){
+    this.sidebarVisible = true;
   }
 
 }
