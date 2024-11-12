@@ -22,22 +22,28 @@ export class LoginComponent {
   email! : string;
   password! : string;
 
+  isLoading = false;
+
   // Injections
 
   toaster = inject(CustomToasterService)
 
   login(){
+    this.isLoading = true;
     this.auth.loginUser({email : this.email, password : this.password}).subscribe({
       next: (n : any) => {
+        this.isLoading = false;
         this.authorize.storeJwt(n.token);
         this.authorize.generalStorageFtn(n.refreshToken, 'ref_tkn')
         this.authorize.generalStorageFtn(n.user.id, 'uid')
         this.toaster.show("success", "Login Successful!")
       },
       error : (e) => {
+        this.isLoading = false;
         this.toaster.show("error", "Login not Successful!")
       },
       complete: () => {
+        this.isLoading = false;
         this.router.navigate(['/dashboard'])
       }
     })
