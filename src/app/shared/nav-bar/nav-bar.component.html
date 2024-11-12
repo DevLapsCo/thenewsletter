@@ -11,7 +11,7 @@
                 <!-- <li><a class="navigate">Draft</a></li> -->
                 <!-- <li><a>Templates</a></li> -->
                 <li><a class="navigate" [routerLink]="['email-config']">Email Configuration</a></li>
-                <li><a class="navigate" [routerLink]="['settings']">Settings</a></li>
+                <!-- <li><a class="navigate" [routerLink]="['settings']">Settings</a></li> -->
                 @if (isAdmin) {
                     <li><a class="navigate" [routerLink]="['add-template']">Add Template</a></li>
                 }
@@ -23,15 +23,15 @@
         <div class="menu">
             <ul>
                 <li><a class="navigate">
-                    <div class="logout">
+                    <div (click)="logout()" class="logout">
                         <span class="material-symbols-outlined">logout</span>
                         <span>Logout</span>
                     </div>
                    @if(userData != null){
                     <div class="profile">
-                        <span class="circle">{{userData.firstName.charAt(0) + userData.lastName.charAt(0)}}</span>
+                        <span class="circle">{{userData.firstName.charAt(0).toUpperCase() + (userData.lastName ? userData?.lastName.charAt(0).toUpperCase() : "")}}</span>
                         <span class="details">
-                            <h3>{{userData!.firstName + " " + userData.lastName}}</h3>
+                            <h3 style="text-transform: capitalize;" >{{userData!.firstName + " " + (userData?.lastName ? userData.lastName : "")}}</h3>
                             <span>{{userData.email}}</span>
                         </span>
                     </div>

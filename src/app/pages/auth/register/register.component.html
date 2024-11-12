@@ -68,7 +68,7 @@
                     </div>
 
                     <!-- Remember me checkbox -->
-                    <div class="flex items-center justify-between">
+                    <!-- <div class="flex items-center justify-between">
                         <div class="flex items-start">
                             <div class="flex items-center h-5">
                                 <input formControlName="rememberMe" id="remember" type="checkbox"
@@ -79,7 +79,7 @@
                             </div>
                         </div>
                         <a href="#" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
-                    </div>
+                    </div> -->
 
                     <!-- Submit button with loading state -->
                     <div>
@@ -114,7 +114,7 @@
 
                     <!-- Sign in link -->
                     <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                        Already have an account? <a routerLink="/login"
+                        Already have an account? <a [routerLink]="['/login']"
                             class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign in</a>
                     </p>
                 </form>

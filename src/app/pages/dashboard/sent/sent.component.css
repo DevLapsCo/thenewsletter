@@ -46,6 +46,10 @@
     overflow-y: scroll;
 }
 
+.margin-sides{
+    margin-inline: 20px;
+}
+
 .email-card{
     width: 100%;
     padding: 20px;

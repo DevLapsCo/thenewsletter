@@ -6,11 +6,12 @@ import { ProviderValidationService } from '../../../services/providerValidation/
 import { NgIf } from '@angular/common';
 import { UserService } from '../../../services/user-data/user.service';
 import { LoaderComponent } from "../../../shared/loader/loader.component";
+import { EmailProviderDocsComponent } from "./hot-to/how-to.component";
 
 @Component({
   selector: 'app-email-config',
   standalone: true,
-  imports: [TagModule, SkeletonModule, NgIf, ReactiveFormsModule, LoaderComponent],
+  imports: [TagModule, SkeletonModule, NgIf, ReactiveFormsModule, LoaderComponent, EmailProviderDocsComponent],
   templateUrl: './email-config.component.html',
   styleUrls: ['./email-config.component.css']
 })

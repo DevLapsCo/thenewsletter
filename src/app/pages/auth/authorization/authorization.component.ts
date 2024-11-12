@@ -38,7 +38,7 @@ export class AuthorizationComponent implements AfterViewInit {
       next: (response: any) => {
         console.log(response);
         this.auth.generalStorageFtn(response.refreshToken, 'ref_tkn');
-        this.auth.generalStorageFtn(response.user.id, 'uId');
+        this.auth.generalStorageFtn(response.user.id, 'uid');
         this.auth.storeJwt(response.token);
         this.router.navigate(['/dashboard']);
       },
@@ -52,7 +52,7 @@ export class AuthorizationComponent implements AfterViewInit {
      this.auth.authorizeRegistration({email: email, code : code}).subscribe({
       next: (n : any) => {
         this.auth.generalStorageFtn(n.refreshToken, 'ref_tkn');
-        this.auth.generalStorageFtn(n.user.id, 'uId');
+        this.auth.generalStorageFtn(n.user.id, 'uid');
         this.auth.storeJwt(n.token);
         this.router.navigate(['/dashboard']);
       },

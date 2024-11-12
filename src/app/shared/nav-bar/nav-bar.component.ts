@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { UserService } from '../../services/user-data/user.service';
 
 @Component({
@@ -16,6 +16,7 @@ export class NavBarComponent implements OnInit{
   }
 
   userService = inject(UserService)
+  router = inject(Router)
 
   isAdmin = false;
 
@@ -34,6 +35,11 @@ export class NavBarComponent implements OnInit{
         }
       }
     })
+  }
+
+  logout(){
+    localStorage.clear();
+    this.router.navigate([''])
   }
 
 }

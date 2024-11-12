@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { OAuth2Google } from '../../../utils/constants/api.base';
@@ -9,7 +9,7 @@ import { AuthorizeService } from '../../../services/authorization/auth.service';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, RouterLink, FormsModule, ReactiveFormsModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
