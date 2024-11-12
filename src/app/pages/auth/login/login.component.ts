@@ -6,11 +6,12 @@ import { AuthService } from '../../../services/authentication/auth.service';
 import { AuthorizeService } from '../../../services/authorization/auth.service';
 import { CustomToasterService } from '../../../services/custom-toaster/custom-toaster.service';
 import { OAuth2Google } from '../../../utils/constants/api.base';
+import { LoaderComponent } from "../../../shared/loader/loader.component";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, LoaderComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
