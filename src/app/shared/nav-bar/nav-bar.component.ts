@@ -28,7 +28,7 @@ export class NavBarComponent implements OnInit{
     if(id != null)
     this.userService.getUserData({Id : id}).subscribe({
       next: (n : any) => {
-        console.log(n);
+        // console.log(n);
         this.userData = n
         if(n.roles.includes("ADMIN")){
           this.isAdmin = true

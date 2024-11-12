@@ -20,7 +20,7 @@ export class UserService {
     this.refreshToken().subscribe({
       next: (n: any) => {},
       error: (e) => {
-        console.log(e);
+        // console.log(e);
         localStorage.clear();
         router.navigate(['']);
       },
@@ -57,7 +57,7 @@ export class UserService {
         next: (userData: any) => {
           this.userDataSubject.next(userData);
           this.userData = userData;
-          console.log(userData);
+          // console.log(userData);
           
         },
         error: (error) => {
