@@ -32,11 +32,15 @@ export class LoginComponent {
     this.isLoading = true;
     this.auth.loginUser({email : this.email, password : this.password}).subscribe({
       next: (n : any) => {
+       if(n.status == 403) {
+          this.toaster.show("error", n.message);
+       } else {
         this.isLoading = false;
         this.authorize.storeJwt(n.token);
         this.authorize.generalStorageFtn(n.refreshToken, 'ref_tkn')
         this.authorize.generalStorageFtn(n.user.id, 'uid')
         this.toaster.show("success", "Login Successful!")
+       }
       },
       error : (e) => {
         this.isLoading = false;

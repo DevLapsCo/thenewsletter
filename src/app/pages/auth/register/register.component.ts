@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
       password: ['', [
         Validators.required,
         Validators.minLength(8),
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$')
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*(),.?":{}|<>])[a-zA-Z\\d!@#$%^&*(),.?":{}|<>]{8,}$')
       ]],
       confirmPassword: ['', Validators.required],
       rememberMe: [false]
@@ -84,15 +84,48 @@ export class RegisterComponent implements OnInit {
     }
     
     if (control.hasError('pattern')) {
-      if (fieldName === 'password') {
-        return 'Password must contain at least one uppercase letter, one lowercase letter, and one number';
-      }
-      if (fieldName === 'username') {
-        return 'Username can only contain letters, numbers, dots, underscores, and hyphens';
-      }
+      return 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character';
     }
 
     return '';
+  }
+
+  getPasswordStrength(): string {
+    const password = this.registerForm.get('password')?.value;
+    if (!password) {
+      return 'Weak';
+    }
+  
+    let strength = 0;
+    if (password.length >= 8) {
+      strength += 1;
+    }
+    if (/[a-z]/.test(password)) {
+      strength += 1;
+    }
+    if (/[A-Z]/.test(password)) {
+      strength += 1;
+    }
+    if (/\d/.test(password)) {
+      strength += 1;
+    }
+    if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+      strength += 1;
+    }
+  
+    switch (strength) {
+      case 0:
+      case 1:
+        return 'Weak';
+      case 2:
+      case 3:
+        return 'Medium';
+      case 4:
+      case 5:
+        return 'Strong';
+      default:
+        return 'Weak';
+    }
   }
 
   async register() {
