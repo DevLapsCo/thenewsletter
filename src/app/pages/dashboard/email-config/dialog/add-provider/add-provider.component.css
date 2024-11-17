@@ -1,0 +1,92 @@
+.config-forms{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    overflow-y: scroll;
+    padding: 5px;
+}
+
+h2{
+    font-size: 25px !important;
+    display: flex;
+    align-items: center !important;
+    padding: 0 !important;
+}
+
+.config-forms form{
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+    gap: 30px;
+}
+
+.input{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input label{
+    font-size: 13px;
+    color: grey;
+}
+
+.input input{
+    height: 30px;
+    border: 1px solid #bbbbbb;
+    border-radius: 8px;
+    padding: 0 10px;
+}
+
+.input input:focus{
+    outline: 3px solid #0055ff70;
+    box-shadow: none;
+}
+
+.config-forms button{
+    background-color: #000;
+    border-radius: 8px;
+    height: 30px;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.actions button{
+    background-color: #000;
+    border-radius: 30px;
+    color: #fff;
+    padding: 10px 15px !important;
+}
+
+.actions button:active{
+    color: #fff;
+    background-color: #000;
+}
+
+.actions button:disabled{
+    background-color: rgb(180, 180, 180);
+    color: #000;
+}
+
+.actions button:first-child{
+    background-color: #ddd;
+    color: #000;
+}
+
+
+::ng-deep .mat-mdc-dialog-surface{
+    border-radius: 30px !important;
+    padding: 20px;
+}
+
+::ng-deep .mat-mdc-dialog-container .mat-mdc-dialog-content {
+    padding: 0 !important;
+}
+
+::ng-deep .mat-mdc-dialog-actions {
+    align-items: last baseline;
+    padding: 0 !important;
+}

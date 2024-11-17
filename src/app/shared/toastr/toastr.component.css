@@ -10,7 +10,7 @@
     align-items: center;
     border-radius: 7px;
     font-weight: bold;
-    z-index: 1000;
+    z-index: 1000 !important;
   }
   
   .toastr-message.success {

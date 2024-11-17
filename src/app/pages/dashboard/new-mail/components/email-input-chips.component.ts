@@ -35,10 +35,7 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
     }
 
     .chips-wrapper {
-    //   min-height: 30px;
-    //   border: 1px solid #ccc;
       border-radius: 4px;
-    //   padding: 4px;
       display: flex;
       flex-wrap: wrap;
       gap: 4px;

@@ -40,6 +40,7 @@ export class LoginComponent {
         this.authorize.generalStorageFtn(n.refreshToken, 'ref_tkn')
         this.authorize.generalStorageFtn(n.user.id, 'uid')
         this.toaster.show("success", "Login Successful!")
+        this.router.navigate(['/dashboard'])
        }
       },
       error : (e) => {
@@ -48,7 +49,6 @@ export class LoginComponent {
       },
       complete: () => {
         this.isLoading = false;
-        this.router.navigate(['/dashboard'])
       }
     })
   }

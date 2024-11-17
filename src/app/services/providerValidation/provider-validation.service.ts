@@ -32,4 +32,14 @@ export class ProviderValidationService {
     })
   }
 
+  getAllUserProvider(id : string){
+    return this.httpClient.get(`${API_BASE_URL}/api/v1/email/user-providers`, {
+      params : {id : id}
+    })
+  }
+
+  UpdateAllUserProvider( payload: object){
+    return this.httpClient.put(`${API_BASE_URL}/api/v1/email/user-providers`, payload)
+  }
+
 }

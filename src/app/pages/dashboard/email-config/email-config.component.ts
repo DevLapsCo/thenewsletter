@@ -3,15 +3,19 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { TagModule } from 'primeng/tag';
 import { SkeletonModule } from 'primeng/skeleton';
 import { ProviderValidationService } from '../../../services/providerValidation/provider-validation.service';
-import { NgIf } from '@angular/common';
+import { NgIf, NgStyle } from '@angular/common';
 import { UserService } from '../../../services/user-data/user.service';
 import { LoaderComponent } from "../../../shared/loader/loader.component";
 import { EmailProviderDocsComponent } from "./hot-to/how-to.component";
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { AddProviderComponent } from './dialog/add-provider/add-provider.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { CustomToasterService } from '../../../services/custom-toaster/custom-toaster.service';
 
 @Component({
   selector: 'app-email-config',
   standalone: true,
-  imports: [TagModule, SkeletonModule, NgIf, ReactiveFormsModule, LoaderComponent, EmailProviderDocsComponent],
+  imports: [SkeletonModule, NgStyle, NgIf, EmailProviderDocsComponent],
   templateUrl: './email-config.component.html',
   styleUrls: ['./email-config.component.css']
 })
@@ -19,6 +23,9 @@ export class EmailConfigComponent {
   providerValidation = inject(ProviderValidationService);
   form: FormGroup;
   userData = inject(UserService)
+  sanckbar = inject(MatSnackBar)
+  toaster = inject(CustomToasterService)
+  dialog = inject(MatDialog)
   isValid: boolean | null = null; // Track validation status
 
   constructor(private fb: FormBuilder) {
@@ -33,17 +40,30 @@ export class EmailConfigComponent {
     this.getUserProvider();
   }
 
+  providers : Array<any>= [];
+
+  openAddProviderDialog(){
+    this.dialog.open(AddProviderComponent)
+  }
+ 
+  openDocsDiolog(){
+    this.dialog.open(EmailProviderDocsComponent)
+  }
+  
   isLoading = false;
 
+  transform(value: string): string {
+    return value ? '•'.repeat(value.length) : '';
+  }
+
   getUserProvider(){
+    this.isLoading = true;
     const id = localStorage.getItem('uid')
     if(id != null)
-    this.providerValidation.getAProvider(id).subscribe({
+    this.providerValidation.getAllUserProvider(id).subscribe({
        next: (n : any) => {
-        this.form.get('username')?.setValue(n.username);
-        this.form.get('password')?.setValue(n.password);
-        this.form.get('host')?.setValue(n.host);
-        this.form.get('port')?.setValue(n.port);
+        this.isLoading = false
+       this.providers = n.providers
        },
        error: (e : any) => {
 
@@ -51,24 +71,28 @@ export class EmailConfigComponent {
     })
   }
 
-  validateProvider() {
-    if (this.form.valid) {
-      const configData = this.form.value;
-       this.isLoading = true;
-       const id = localStorage.getItem('uid')
-       this.providerValidation.updateEmailConfig({...configData, userId : id}).subscribe({
-         next: (n : any) => {
-              this.isLoading = false;
-              this.isValid = true;
-            },
-            error : (e : any) => {
-              this.isLoading = false;
-              this.isValid = false;
-              // console.error('Validation failed', e);
-            }
-       })
-    } else {
-      this.isValid = false; // Show invalid if form is not complete
-    }
+
+
+  makeProviderActive(item : any){
+    var newProviderUpdate = JSON.parse(JSON.stringify(this.providers));
+    for(let i = 0; i < newProviderUpdate.length; i++){
+       if(newProviderUpdate[i].id == item.id){
+         newProviderUpdate[i].active = true
+        } else {
+          newProviderUpdate[i].active = false  
+       }
+      }
+
+      this.providerValidation.UpdateAllUserProvider(newProviderUpdate).subscribe({
+        next: (n : any) => {
+          this.sanckbar.open("Provider is active now!", "Ok")
+        },
+        error: (e) => {
+          this.toaster.show("error", "An error occured, could not make the provider active!")
+        }
+      })
+
   }
+
+  
 }

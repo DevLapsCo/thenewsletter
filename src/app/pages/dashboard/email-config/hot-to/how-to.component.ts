@@ -1,6 +1,7 @@
 // email-provider-docs.component.ts
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { MatDialogModule } from '@angular/material/dialog';
 
 interface EmailProvider {
   name: string;
@@ -19,15 +20,12 @@ interface EmailProvider {
 @Component({
   selector: 'app-email-provider-docs',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatDialogModule],
   template: `
-    <div class="container mx-auto p-4 max-w-5xl">
-      <!-- Header -->
-      <header class="text-center mb-8">
-        <h1 class="text-3xl font-bold text-gray-800 mb-2">Email Provider Configuration Guide</h1>
-        <p class="text-gray-600">Configure your email client with the correct SMTP and IMAP settings</p>
-      </header>
-
+      <h1 mat-dialog-title class="text-3xl font-bold text-gray-800 mb-2">Email Provider Configuration Guide</h1>
+      <div class="">
+        <!-- Header -->
+        <p  class="mb-5 text-gray-600">Configure your email client with the correct SMTP and IMAP settings</p>
       <!-- Provider Selection Tabs -->
       <div class="mb-6">
         <div class="flex flex-wrap gap-2 border-b">
@@ -44,7 +42,8 @@ interface EmailProvider {
         </div>
       </div>
 
-      <!-- Provider Settings -->
+      <mat-dialog-content class="mat-typography">
+          <!-- Provider Settings -->
       @for (provider of providers | keyvalue; track provider.key) {
         @if (selectedProvider === provider.key) {
           <div class="space-y-6">
@@ -92,8 +91,8 @@ interface EmailProvider {
               </div>
             </div> -->
 
-            <!-- App Password Steps -->
-            <div class="bg-white rounded-lg shadow p-6">
+                        <!-- App Password Steps -->
+                        <div class="bg-white rounded-lg shadow p-6">
               <div class="flex items-center gap-2 mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -127,15 +126,52 @@ interface EmailProvider {
           </div>
         </div>
       </div>
-    </div>
+    </mat-dialog-content>
+    <mat-dialog-actions class="actions" align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+   
+</mat-dialog-actions>
+  </div>
+
   `,
   styles: [`
     :host {
       display: block;
-      background-color: #f9fafb;
-      min-height: 100vh;
-      padding: 2rem 0;
     }
+
+    ::ng-deep .mat-mdc-dialog-surface{
+    border-radius: 30px !important;
+    padding: 20px;
+}
+
+::ng-deep .mat-mdc-dialog-container {
+    padding: 0 !important;
+}
+
+::ng-deep .mat-mdc-dialog-title {
+    padding: 0 !important;
+    font-size: 20px !important;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+::ng-deep .mat-mdc-dialog-title::before {
+    height: 0;
+    align-items: first baseline;
+}
+
+::ng-deep .mat-mdc-dialog-actions {
+    align-items: last baseline;
+    padding: 0 !important;
+}
+
+.actions button:first-child{
+    background-color: #ddd;
+    color: #000;
+    padding: 7px 15px;
+    border-radius: 25px;
+}
+
   `]
 })
 export class EmailProviderDocsComponent {

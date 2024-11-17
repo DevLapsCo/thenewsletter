@@ -2,41 +2,44 @@
     <div class="container">
       <div class="head">
         <h3>Email Configurations</h3>
-        <p-tag *ngIf="isValid === true" severity="success" value="Valid"></p-tag>
-        <div *ngIf="isValid === false" class="loader" style="width: 80px;">
-          <p-tag *ngIf="isValid === false" severity="danger" value="Invalid"></p-tag>
-          <!-- <p-skeleton height="1.5rem" styleClass="mb-2"></p-skeleton> -->
+        <div class="action-button">
+          <button (click)="openDocsDiolog()">Email Provider Docs</button>
+          <button (click)="openAddProviderDialog()">Add Provider</button>
         </div>
       </div>
   
-      <div class="config-forms">
-        <form [formGroup]="form">
-          <div class="input">
-            <label for="host">Host</label>
-            <input formControlName="host" type="text" placeholder="smtp.yourhostprovider.com">
+      <div class="providers">
+        @if(isLoading){
+          <div class="provider">
+            <div class="details">
+              <span><p-skeleton width="10rem"  borderRadius="12px" height="2rem" /></span>
+              <span><p-skeleton width="10rem"  borderRadius="12px" height="2rem" /></span>
+            </div>
+            <div class="action">
+              <p-skeleton shape="circle" size="2rem" styleClass="mr-2" />
           </div>
-          <div class="input">
-            <label for="email">Email</label>
-            <input formControlName="username" type="text" placeholder="youremail@provider.com">
           </div>
-          <div class="input">
-            <label for="password">Password</label>
-            <input formControlName="password" type="password" placeholder="your-password">
-          </div>
-          <div class="input">
-            <label for="port">Port</label>
-            <input formControlName="port" type="text" placeholder="e.g. 587">
-            <span style="font-size: 10px; color: grey;">We recommend using 587 for convenience.</span>
-          </div>
-        </form>
-       @if(isLoading){
-        <button><app-loader/></button>
-       } @else {
-        <button (click)="validateProvider()" [disabled]="!form.valid">Submit</button>
-       }
-
-       <app-email-provider-docs/>
+        } @else if (providers.length == 0) {
+          <span>No Providers</span>
+        } @else {
+          @for (item of providers; track $index) {
+            <div class="provider">
+              <div class="details">
+                <span>{{item.username}}</span>
+                <span>{{transform(item.password).slice(0, 15)}}</span>
+              </div>
+              <div class="action">
+               @if(item.active == true){
+                 <span class="fas fa-check activeProvider"></span>
+                } @else {
+                 <span (click)="makeProviderActive(item)" class="fas fa-plug inactiveProvider"></span>
+               }
+              </div>
+            </div>
+          }
+        }
+      </div>
       </div>
     </div>
-  </div>
   
+

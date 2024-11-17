@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>Add Provider</h2>
+<mat-dialog-content>
+    <div class="config-forms">
+        <form [formGroup]="form">
+          <div class="input">
+            <label for="host">Host</label>
+            <input formControlName="host" type="text" placeholder="smtp.yourhostprovider.com">
+          </div>
+          <div class="input">
+            <label for="email">Email</label>
+            <input formControlName="username" type="text" placeholder="youremail@provider.com">
+          </div>
+          <div class="input">
+            <label for="password">Password</label>
+            <input formControlName="password" type="password" placeholder="your-password">
+          </div>
+          <div class="input">
+            <label for="port">Port</label>
+            <input formControlName="port" type="text" placeholder="e.g. 587">
+            <span style="font-size: 10px; color: grey;">We recommend using 587 for convenience.</span>
+          </div>
+        </form>
+        @if(isValid != undefined){
+            <p-tag severity="danger" value="Provider not valid!"/>
+        } @else if(isValid) {
+            <p-tag severity="success" value="Provider is Valid"/>
+        }
+    
+    </div>    
+</mat-dialog-content>
+<mat-dialog-actions class="actions" align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    @if(isLoading){
+        <button><app-loader/></button>
+       } @else {
+        <button mat-button (click)="validateProvider()" [disabled]="!form.valid">Submit</button>
+       }
+</mat-dialog-actions>
