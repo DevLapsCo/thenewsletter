@@ -18,7 +18,9 @@ interface Section {
         <!-- Header -->
         <div class="text-center mb-16">
           <div class="inline-flex p-4 bg-blue-50 rounded-2xl mb-6">
-            <i class="fas fa-shield-alt text-blue-600 text-2xl"><img width="100px" src="https://the-newsletter-template.s3.us-east-1.amazonaws.com/The+NewsLetter.png" alt=""></i>
+            <i class="fas fa-shield-alt text-blue-600 text-2xl">
+                <!-- <img width="100px" src="https://the-newsletter-template.s3.us-east-1.amazonaws.com/The+NewsLetter.png" alt=""> -->
+            </i>
           </div>
           <h1 class="text-4xl font-bold text-gray-900 mb-4">Privacy Policy</h1>
           <p class="text-lg text-gray-600 max-w-2xl mx-auto">
