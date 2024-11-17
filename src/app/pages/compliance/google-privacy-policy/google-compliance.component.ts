@@ -5,7 +5,7 @@ interface Section {
   icon: string;
   title: string;
   content: any;
-  type: 'list' | 'grid' | 'text' | 'contact';
+  type: 'list' | 'grid' | 'text' | 'contact' | 'terms';
 }
 
 @Component({
@@ -18,9 +18,7 @@ interface Section {
         <!-- Header -->
         <div class="text-center mb-16">
           <div class="inline-flex p-4 bg-blue-50 rounded-2xl mb-6">
-            <i class="fas fa-shield-alt text-blue-600 text-2xl">
-                <!-- <img width="100px" src="https://the-newsletter-template.s3.us-east-1.amazonaws.com/The+NewsLetter.png" alt=""> -->
-            </i>
+            <i class="fas fa-shield-alt text-blue-600 text-2xl"></i>
           </div>
           <h1 class="text-4xl font-bold text-gray-900 mb-4">Privacy Policy</h1>
           <p class="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -76,6 +74,25 @@ interface Section {
                     <p class="text-gray-800 font-medium">{{section.content.address}}</p>
                   </div>
                 </div>
+
+                <!-- Terms Layout -->
+                <div *ngIf="section.type === 'terms'" class="space-y-4">
+                  <div class="bg-gray-50 p-4 rounded-xl">
+                    <p class="text-gray-600 mb-3">{{section.content.description}}</p>
+                    <a [href]="section.content.link" 
+                       class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium">
+                      <span>View Terms of Service</span>
+                      <i class="fas fa-external-link-alt text-sm"></i>
+                    </a>
+                  </div>
+                  <ul class="space-y-2">
+                    <li *ngFor="let highlight of section.content.highlights" 
+                        class="flex items-center gap-3 text-gray-600">
+                      <div class="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
+                      {{highlight}}
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -128,6 +145,22 @@ export class PrivacyPolicyComponent {
         'Delete your account',
         'Opt-out options'
       ]
+    },
+    {
+      icon: 'fas fa-book',
+      title: 'Terms of Service',
+      type: 'terms',
+      content: {
+        description: 'Our Terms of Service govern your use of our email campaign and newsletter platform. Please review them carefully.',
+        link: '/terms',
+        highlights: [
+          'Email campaign and newsletter creation guidelines',
+          'Acceptable use policy and anti-spam requirements',
+          'Subscriber data management and protection',
+          'Service limitations and usage restrictions',
+          'Content ownership and intellectual property rights'
+        ]
+      }
     },
     {
       icon: 'fas fa-envelope',
