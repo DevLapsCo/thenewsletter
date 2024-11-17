@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 interface Section {
   icon: string;
@@ -10,7 +11,7 @@ interface Section {
 
 @Component({
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   selector: 'app-privacy-policy',
   template: `
     <div class="min-h-screen bg-gradient-to-b from-blue-50/50 to-white">
@@ -79,7 +80,7 @@ interface Section {
                 <div *ngIf="section.type === 'terms'" class="space-y-4">
                   <div class="bg-gray-50 p-4 rounded-xl">
                     <p class="text-gray-600 mb-3">{{section.content.description}}</p>
-                    <a [href]="section.content.link" 
+                    <a [routerLink]="['/terms-of-service']" 
                        class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium">
                       <span>View Terms of Service</span>
                       <i class="fas fa-external-link-alt text-sm"></i>
