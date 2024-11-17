@@ -128,7 +128,7 @@ interface EmailProvider {
       </div>
     </mat-dialog-content>
     <mat-dialog-actions class="actions" align="end">
-    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button mat-dialog-close>Close</button>
    
 </mat-dialog-actions>
   </div>
@@ -190,11 +190,13 @@ export class EmailProviderDocsComponent {
     //     port: 993
     //   },
       appPasswordSteps: [
-        'Go to Google Account Settings',
-        'Navigate to Security → 2-Step Verification',
-        'Scroll to "App passwords"',
-        'Choose "Mail" as the app',
-        'Click "Generate"'
+        "Log into your Google Account at https://myaccount.google.com/",
+        "Navigate to the 'Security' tab if necessary.",
+        "Enable '2-Step Verification' under 'Signing in to Google' if not already enabled.",
+        "Search for 'App Passwords' in the account settings search bar.",
+      "Select the app and device from the dropdown, or choose 'Other' and name it.",
+      "Click 'Generate' to create an app password.",
+      "Copy the generated app password and use it in the app or device's login settings."
       ]
     },
     outlook: {
