@@ -6,6 +6,7 @@ import { AuthorizationComponent } from './pages/auth/authorization/authorization
 import { authGuard } from './utils/guards/auth/auth.guard';
 import { AwaitEmailComponent } from './pages/auth/authorization/await-email/await-email.component';
 import { PrivacyPolicyComponent } from './pages/compliance/google-privacy-policy/google-compliance.component';
+import { TermsOfServiceComponent } from './pages/compliance/terms-of-use/terms-of-use.component';
 
 export const routes: Routes = [
     {
@@ -26,6 +27,10 @@ export const routes: Routes = [
     {
         path: 'privacy',
         component: PrivacyPolicyComponent
+    },
+    {
+        path: 'terms-of-service',
+        component: TermsOfServiceComponent
     },
     {
         path: 'register',

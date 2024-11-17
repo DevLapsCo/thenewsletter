@@ -1,0 +1,126 @@
+<main class="min-h-screen bg-gradient-to-b from-blue-50/50 to-white">
+    <div class="max-w-4xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <header class="text-center mb-16">
+        <div class="inline-flex p-4 bg-blue-50 rounded-2xl mb-6">
+          <img 
+            src="https://the-newsletter-template.s3.us-east-1.amazonaws.com/The+NewsLetter.png" 
+            alt="The NewsLetter" 
+            class="h-4 w-auto"
+            width="48"
+            height="48"
+            loading="eager"
+          />
+        </div>
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">Terms of Service</h1>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          Last updated: {{currentDate | date:'longDate'}}
+        </p>
+      </header>
+  
+      <!-- Content Sections -->
+      <div class="space-y-8">
+        <!-- Agreement Notice -->
+        <div 
+          class="bg-blue-50 p-6 rounded-2xl text-blue-800"
+          role="alert"
+        >
+          <p>By accessing or using The NewsLetter platform, you agree to be bound by these Terms of Service. Please read them carefully before proceeding.</p>
+        </div>
+  
+        <!-- Terms Sections -->
+        <section 
+          *ngFor="let section of sections; trackBy: trackByTitle" 
+          class="bg-white rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100"
+        >
+          <h2 class="text-xl font-semibold text-gray-800 mb-4">{{section.title}}</h2>
+  
+          <!-- Text Layout -->
+          <div 
+            *ngIf="section.type === 'text'" 
+            class="prose max-w-none text-gray-600"
+            [innerHTML]="sanitizeHtml(section.content)"
+          ></div>
+  
+          <!-- List Layout -->
+          <ul 
+            *ngIf="section.type === 'list'" 
+            class="space-y-3"
+            role="list"
+          >
+            @for (item of section.content; track $index) {
+                <li  
+              class="flex items-start gap-3 text-gray-600"
+            >
+              <span class="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2" aria-hidden="true"></span>
+              <span>{{item}}</span>
+            </li>
+            }
+          </ul>
+  
+          <!-- Pricing Layout -->
+          <div 
+            *ngIf="section.type === 'pricing'"
+            class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4"
+            role="group"
+            aria-label="Subscription pricing tiers"
+          >
+            <div 
+              *ngFor="let tier of pricingTiers; trackBy: trackByName" 
+              class="bg-gray-50 rounded-xl p-6 space-y-4"
+              role="article"
+            >
+              <h3 class="text-lg font-semibold text-gray-800">{{tier.name}}</h3>
+              <div class="space-y-2">
+                <p class="text-2xl font-bold text-blue-600">
+                  ${{tier.monthlyPrice}}<span class="text-base font-normal">/mo</span>
+                </p>
+                <p class="text-sm text-gray-500">
+                  or ${{tier.yearlyPrice * 12}}<span class="text-xs">/year</span>
+                </p>
+              </div>
+              <ul 
+                class="space-y-2"
+                role="list"
+              >
+                <li 
+                  *ngFor="let feature of tier.features; trackBy: trackByIndex" 
+                  class="flex items-center gap-2 text-sm text-gray-600"
+                >
+                  <svg 
+                    class="w-4 h-4 text-green-500" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24" 
+                    aria-hidden="true"
+                  >
+                    <path 
+                      stroke-linecap="round" 
+                      stroke-linejoin="round" 
+                      stroke-width="2" 
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  {{feature}}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+  
+        <!-- Footer -->
+        <footer class="mt-16 pt-8 border-t border-gray-100">
+          <p class="text-center text-gray-500">
+            For any questions about these terms, please contact us at 
+            <a 
+              href="mailto:info@devlaps.co" 
+              class="text-blue-600 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded"
+            >
+              {{"info@devlaps.co"}}
+            </a>
+          </p>
+        </footer>
+      </div>
+    </div>
+  </main>
+  
