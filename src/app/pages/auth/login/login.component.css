@@ -9,6 +9,18 @@
     width: 35px;
 }
 
+
+.privacy{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    font-size: 12px;
+    color: grey;
+    text-decoration: underline;
+    padding: 30px 0;
+}
+
 .google-oauth{
     display: flex;
     justify-content: center;
