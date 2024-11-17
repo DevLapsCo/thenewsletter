@@ -39,7 +39,7 @@ export class TermsOfServiceComponent {
     {
       name: 'Business',
       monthlyPrice: 20,
-      yearlyPrice: 200,
+      yearlyPrice: 230,
       features: [
         'Up to 50,000 emails/month',
         'Advanced templates',
@@ -51,7 +51,7 @@ export class TermsOfServiceComponent {
     {
       name: 'Enterprise',
       monthlyPrice: 50,
-      yearlyPrice: 500,
+      yearlyPrice: 590,
       features: [
         'Unlimited emails/month',
         'Custom templates',
