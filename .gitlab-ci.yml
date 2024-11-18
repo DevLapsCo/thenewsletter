@@ -7,7 +7,7 @@ stages:
 
 variables:
   SSH_USER: ubuntu
-  SERVER_IP: 54.225.23.152
+  SERVER_IP: 54.166.222.34
   DEPLOY_PATH: /home/ubuntu/theNewsLetter
   PRIVATE_KEY_PATH:  /builds/pandit.alabi/the-newsletter-frontend/my-gcp-key
 
