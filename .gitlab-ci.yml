@@ -30,7 +30,7 @@ build:
     - pwd
     -  ls "$(pwd)"
     - chmod 700 ~/.ssh
-    - ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
+    - ssh-keyscan -H 54.166.222.34 >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
     - chmod 400 $PRIVATE_KEY_PATH
     - eval $(ssh-agent -s)
