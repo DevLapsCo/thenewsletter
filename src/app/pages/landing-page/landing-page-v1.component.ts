@@ -165,7 +165,7 @@ import { RouterLink } from '@angular/router';
           <div class="grid md:grid-cols-3 gap-8">
             <div class="bg-white rounded-xl shadow-lg p-8 text-center transform hover:scale-105 transition-transform">
               <h3 class="text-2xl font-bold mb-4 text-blue-600">Starter</h3>
-              <p class="text-5xl font-bold mb-6">$29 <span class="text-base">/month</span></p>
+              <p class="text-5xl font-bold mb-6">$5 <span class="text-base">/month</span></p>
               <ul class="mb-8 space-y-3 text-gray-600">
                 <li>Up to 5,000 contacts</li>
                 <li>Basic analytics</li>
@@ -179,7 +179,7 @@ import { RouterLink } from '@angular/router';
 
             <div class="bg-white rounded-xl shadow-lg p-8 text-center transform hover:scale-105 transition-transform border-2 border-blue-600">
               <h3 class="text-2xl font-bold mb-4 text-blue-600">Pro</h3>
-              <p class="text-5xl font-bold mb-6">$79 <span class="text-base">/month</span></p>
+              <p class="text-5xl font-bold mb-6">$20 <span class="text-base">/month</span></p>
               <ul class="mb-8 space-y-3 text-gray-600">
                 <li>Up to 25,000 contacts</li>
                 <li>Advanced analytics</li>
