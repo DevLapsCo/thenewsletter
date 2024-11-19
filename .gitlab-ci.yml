@@ -36,9 +36,11 @@ build:
     - eval $(ssh-agent -s)
     - scp -r -i $PRIVATE_KEY_PATH "$(pwd)"/dist/newletter/browser $SSH_USER@$SERVER_IP:$DEPLOY_PATH
     - ssh -i $PRIVATE_KEY_PATH  $SSH_USER@$SERVER_IP "sudo systemctl restart nginx"
-    - pwd
-    -  ls "$(pwd)"
 
+  artifacts:
+    paths:
+      - ~/builds/pandit.alabi/the-newsletter-frontend/dist/
+      - deploy_key
 
 # deploy:
 #   stage: deploy
