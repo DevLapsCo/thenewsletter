@@ -39,10 +39,6 @@ build:
     - pwd
     -  ls "$(pwd)"
 
-  artifacts:
-    paths:
-      - ~/builds/pandit.alabi/the-newsletter-frontend/dist/
-      - deploy_key
 
 # deploy:
 #   stage: deploy
