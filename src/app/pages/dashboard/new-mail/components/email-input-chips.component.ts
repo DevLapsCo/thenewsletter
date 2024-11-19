@@ -78,7 +78,6 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
     .email-input {
       border: none;
       outline: none;
-      padding: 4px;
       flex: 1;
       min-width: 120px;
     }

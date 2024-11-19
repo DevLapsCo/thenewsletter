@@ -2,21 +2,25 @@
     width: 100%;
     height: 100%;
     display: flex;
+    justify-content: center;
 }
 
 .editor{
     width: 100%;
-    height: 100%;
+    height: 70vh;
     flex: 1;
-    max-inline-size: 80rem;
+    max-inline-size: 60rem;
     display: flex;
     overflow-y: scroll;
     flex-direction: column;
+    box-shadow: 0 5px 8px #00000030;
+    margin-block-start: 40px;
+    border-radius: 30px;
 }
 
 .input{
     width: 100%;
-    padding: 10px;
+    padding: 10px 20px;
     border-bottom: 1px solid rgb(224, 224, 224);
 }
 
@@ -45,18 +49,31 @@
 
   
 }
-.preview{
-  margin-block-start: 30px;
-  overflow-y: scroll;
+
+.panel{
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  height: 40px;
 }
 
+
 .edit-data{
-    width: 50vh;
+    width: 100%;
     border-left: 1px solid rgb(215, 215, 215);
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+.template-name{
+  padding: 0 20px;
+  height: 50px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  background-color: #000;
 }
 
 /*  */
@@ -166,3 +183,32 @@
     font-size: 13px;
     font-weight: 500;
   }
+
+  :host ::ng-deep .ql-editor, ::ng-deep .ql-container{
+    /* min-height: 300px; */
+    /* min-width: 70svw; */
+    /* max-height: 30rem; */
+    height: 30vh;
+    border: 0;
+    outline: 0;
+    overflow-y: scroll;
+  }
+
+ :host ::ng-deep .ql-container, :host ::ng-deep .ql-toolbar{
+    border: 0;
+}
+
+:host ::ng-deep .ql-toolbar{
+    border-radius: 10px;
+    background-color: #fff;
+    /* box-shadow: 0 0 10px #00000020; */
+    /* padding: 0 20px; */
+}
+  
+:host ::ng-deep .ql-toolbar button:hover{
+    color: var(--primary-brand-dark);
+}
+
+::ng-deep .ql-snow .ql-editor h1 {
+    font-size: 20px;
+}

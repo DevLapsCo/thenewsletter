@@ -12,11 +12,12 @@ import { EmailService } from '../../../services/email/email.service';
 import { CustomToasterService } from '../../../services/custom-toaster/custom-toaster.service';
 import { NgFor } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SidebarModule } from 'primeng/sidebar';
 
 @Component({
   selector: 'app-new-mail',
   standalone: true,
-  imports: [QuillModule,  NgFor, FormsModule, ChipsModule, EmailChipsComponent, LoaderComponent],
+  imports: [QuillModule, SidebarModule,  NgFor, FormsModule, ChipsModule, EmailChipsComponent, LoaderComponent],
   templateUrl: './new-mail.component.html',
   styleUrl: './new-mail.component.css'
 })
@@ -38,11 +39,15 @@ export class NewMailComponent implements OnInit{
   subject! : string;
   templates : Array<any> = []
 
+  TemplateSideNav: boolean = false;
+
   body = "Your Email Goes here"
 
   isTemplateToggle = false;
 
   templateFields : any = {}
+
+
 // In your Angular service or component
 // fetchFile() {
 //     const fileUrl = this.itemSelected.te;
