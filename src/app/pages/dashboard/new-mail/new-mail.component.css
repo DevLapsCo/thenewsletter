@@ -11,16 +11,21 @@
     flex: 1;
     max-inline-size: 60rem;
     display: flex;
+    justify-content: space-between;
     overflow-y: scroll;
     flex-direction: column;
     box-shadow: 0 5px 8px #00000030;
     margin-block-start: 40px;
     border-radius: 30px;
+    border: 2px solid black ;
 }
 
 .input{
     width: 100%;
-    padding: 10px 20px;
+    height: 30px;
+    padding: 0px 20px;
+    display: flex;
+    align-items: center;
     border-bottom: 1px solid rgb(224, 224, 224);
 }
 
@@ -69,11 +74,12 @@
 
 .template-name{
   padding: 0 20px;
-  height: 50px;
-  color: #fff;
+  height: 40px;
+  border-bottom: 1px solid #ddd;
+  color: #000;
   display: flex;
   align-items: center;
-  background-color: #000;
+  /* background-color: #000; */
 }
 
 /*  */
@@ -184,6 +190,8 @@
     font-weight: 500;
   }
 
+  /* Editor */
+
   :host ::ng-deep .ql-editor, ::ng-deep .ql-container{
     /* min-height: 300px; */
     /* min-width: 70svw; */
@@ -211,4 +219,33 @@
 
 ::ng-deep .ql-snow .ql-editor h1 {
     font-size: 20px;
+}
+
+.complete-action-buttons{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+  gap: 10px;
+}
+
+.complete-action-buttons button{
+  height: 30px;
+  font-size: 13px;
+  display: flex;
+  padding: 0 15px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+}
+
+.choose-temp{
+  background-color: #0057FF;
+  color: #fff;
+}
+
+@media screen and (max-width: 1280px) {
+  .new-mail{
+    padding: 0 20px;
+  }
 }

@@ -10,14 +10,14 @@ import { LoaderComponent } from "../../../shared/loader/loader.component";
 import { ProviderValidationService } from '../../../services/providerValidation/provider-validation.service';
 import { EmailService } from '../../../services/email/email.service';
 import { CustomToasterService } from '../../../services/custom-toaster/custom-toaster.service';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SidebarModule } from 'primeng/sidebar';
 
 @Component({
   selector: 'app-new-mail',
   standalone: true,
-  imports: [QuillModule, SidebarModule,  NgFor, FormsModule, ChipsModule, EmailChipsComponent, LoaderComponent],
+  imports: [QuillModule, NgIf, SidebarModule,  NgFor, FormsModule, ChipsModule, EmailChipsComponent, LoaderComponent],
   templateUrl: './new-mail.component.html',
   styleUrl: './new-mail.component.css'
 })
@@ -144,18 +144,18 @@ htmlBody! : string;
   };
 
   onEditorCreated(quill: any) {
-    console.log('Editor created', quill);
+    // console.log('Editor created', quill);
   }
 
   onContentChanged(html : any ) {
     // this.htmlBody = html.html;
     // console.log(this.templateFields);
     
-    console.log('Content changed', html);
+    // console.log('Content changed', html);
   }
 
   onSelectionChanged( range : any ) {
-    console.log('Selection changed', range);
+    // console.log('Selection changed', range);
   }
 
 
@@ -180,28 +180,30 @@ htmlBody! : string;
 
 
   sendEmail() {
-    this.isLoading = true;
     console.log(this.templateFields);
-    if(this.templateFields != null){
-        const id = localStorage.getItem('uid')
-        
-        if(id != null)
-        this.providerService.getAProvider(id).subscribe({
-         next: (n :any ) => {
-            this.emailService.sendEmail({ templateVariables: this.templateFields, toEmails : this.toEmails, subject : this.subject, fromEmail : n.username, templateFile : this.itemSelected.templateKeyName}, id, n.id).subscribe({
-                next: (n: any) => {
-                    this.isLoading = false;
-                    this.route.navigate(['/dashboard/sent'])
-                    this.toaster.show("success", "Email Sent Successfully!")
-                }, 
-                error: (e : any) => {
-                    this.isLoading = false;
-                    this.toaster.show("error", "Email not Successful!")
-                }
-            })
-         }
-        })
-
+    
+    if( this.itemSelected == null){
+      this.toaster.show("error", "Select a template!")
+    } else if(this.subject == null) {
+      this.toaster.show("error", "Add a Subject!")
+    } else if(this.toEmails.length == 0) {
+      this.toaster.show("error", "Add a Your recepient!")
+    } 
+    else {
+      const id = localStorage.getItem('uid')
+      this.isLoading = true;
+      if(id != null)
+      this.emailService.sendEmail({ templateVariables: this.templateFields, toEmails : this.toEmails, subject : this.subject, templateFile : this.itemSelected.templateKeyName}, id).subscribe({
+        next: (n: any) => {
+            this.isLoading = false;
+            this.route.navigate(['/dashboard/sent'])
+            this.toaster.show("success", "Email Sent Successfully!")
+        }, 
+        error: (e : any) => {
+            this.isLoading = false;
+            this.toaster.show("error", "Email not Successful!")
+        }
+    })
     }
     
   }

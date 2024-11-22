@@ -24,14 +24,13 @@ export class EmailService {
   private readonly API_PATH = `${API_BASE_URL}/api/v1/email`;
 
   // Get all templates
-  sendEmail(emailDetails: any, userId: string, providerId: string): Observable<any> {
+  sendEmail(emailDetails: any, userId: string): Observable<any> {
     const url = `${this.API_PATH}/send`; // Replace with your backend API URL
     
       
     return this.httpClient.post(url, emailDetails, {
       params: {
-        uId : userId,
-        pId: providerId
+        uId : userId      
       }
     });
   }

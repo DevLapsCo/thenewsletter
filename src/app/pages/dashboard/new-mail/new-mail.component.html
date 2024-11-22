@@ -14,9 +14,6 @@
         <div class="bcc input">
             <app-email-chips (toEmails)="getToBcc($event)" placeholder="Bcc"/>
         </div> -->
-        <div class="panel">
-            <button (click)="TemplateSideNav = true">Choose Template</button>
-        </div>
         <quill-editor width="1100px" classes="editor" [(ngModel)]="templateFields!.body"
         [modules]="quillConfig!.modules"
         [formats]="quillConfig!.formats"
@@ -25,6 +22,16 @@
         (onContentChanged)="onContentChanged($event)"
         (onSelectionChanged)="onSelectionChanged($event)">
     </quill-editor>
+    <div class="complete-action-buttons">
+        <button class="choose-temp" (click)="TemplateSideNav = true">Choose Template</button>
+          @if(isLoading){
+                    <app-loader/>
+                } @else {
+                    <button (click)="sendEmail()" class="send-button">Send Email</button>
+                }
+
+
+    </div>
     </div>
 
 
@@ -71,11 +78,7 @@
                }
               </ng-container> 
             
-                @if(isLoading){
-                    <app-loader/>
-                } @else {
-                    <button (click)="sendEmail()" class="send-button">Send Email</button>
-                }
+              
            } @else {
             <span class="text-lg font-semibold text-blue-600 bg-blue-100 border border-blue-300 rounded-md px-3 py-2 shadow-md">
                 Please select a template!
