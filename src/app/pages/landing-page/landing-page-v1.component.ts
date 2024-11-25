@@ -252,7 +252,7 @@ import { RouterLink } from '@angular/router';
           <div>
             <h4 class="font-bold mb-4">Legal</h4>
             <ul>
-              <li><a href="#" class="hover:text-blue-300">Privacy Policy</a></li>
+              <li><a [routerLink]="['/privacy']" class="hover:text-blue-300">Privacy Policy</a></li>
               <li><a [routerLink]="['/terms-of-service']" class="hover:text-blue-300">Terms of Service</a></li>
             </ul>
           </div>
