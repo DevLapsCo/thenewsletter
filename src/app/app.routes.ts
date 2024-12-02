@@ -24,6 +24,7 @@ export const routes: Routes = [
     },
     {
         path: 'home',
+        title: 'The NewsLetter',
         component: LandingPageComponent
     },
     {
