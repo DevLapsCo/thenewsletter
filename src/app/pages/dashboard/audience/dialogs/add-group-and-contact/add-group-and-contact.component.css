@@ -1,0 +1,101 @@
+.head{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    padding-bottom: 0;
+    align-items: center;
+}
+
+
+.forms{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    height: 40vh;
+}
+
+.forms input{
+    height: 30px;
+    width: 100%;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 0 10px;
+    outline: 0;
+}
+
+.contacts{
+    display: grid;
+    grid-template-columns: repeat(3, 3fr);
+    grid-gap: 10px;
+}
+
+.contact-card{
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+
+.contacts .add-contact{
+    /* height: 70px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 30px;
+    width: 100%;
+    border-radius: 20px;
+    color: #fff;
+    background-image: linear-gradient(180deg, #ddd, #959595);
+}
+
+
+.heading {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .heading input {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px;
+  }
+  
+  .submit-button {
+    height: 50px;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    background-color: #000;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: #252525;
+  }
+  
+  .contact-card button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .contact-card button:hover {
+    background-color: #d32f2f;
+  }
+  
+
+  .contact-button{
+      height: 40px !important;
+      background-color: #000 !important;
+  }

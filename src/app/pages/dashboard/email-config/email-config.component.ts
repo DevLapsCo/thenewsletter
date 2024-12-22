@@ -58,7 +58,7 @@ export class EmailConfigComponent {
 
   getUserProvider(){
     this.isLoading = true;
-    const id = localStorage.getItem('uid')
+    const id = sessionStorage.getItem('uid')
     if(id != null)
     this.providerValidation.getAllUserProvider(id).subscribe({
        next: (n : any) => {

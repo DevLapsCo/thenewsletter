@@ -1,0 +1,58 @@
+<div class="audience">
+    <div class="container">
+        <div class="head">
+            <h2>Your audience</h2>
+            <div class="action-buttons">
+                <div class="contact">
+                     <button (click)="toggleContactButton()" class="cont-button"> <span class="material-symbols-outlined">person</span> <span class="label">Add Contacts</span></button>
+                     @if(toggleContact){
+                        <div class="options">
+                            <button (click)="addAContact()">Add a contact</button>
+                            <button (click)="addGroupWithNewContact()">Add a group with new contact</button>
+                            <button (click)="addGroupWithContact()">Add a group with contact</button>
+                         </div>
+                     }
+                </div>
+            </div>
+        </div>
+        <div class="group-contact-list">
+            <div class="search-category">
+                <div class="search">
+                    <span class="material-symbols-outlined">search</span>
+                    <input [(ngModel)]="searchKeyword" type="search" placeholder="Search templates">
+                </div>
+                <div class="actions">
+                    <button>Groups</button>
+                    <button>Contacts</button>
+                </div>
+            </div>
+            <div class="grid">
+                @if(isLoadingContact()){
+                    <p-skeleton width="100%" height="10vh" styleClass="mb-2" borderRadius="16px" />
+                } @else if (allUserGroups.length == 0) {
+                    <div class="group">
+                        <span>No groups or contact</span>
+                    </div>
+                } @else if (allUserGroups.length > 0) {
+                    @for (group of allUserGroups; track $index) {
+                        <span class="group">
+                            <span class="name">{{group.name}}</span>
+                            <p class="notes">{{group.notes}}</p>
+                            <div class="contact-initials">
+                                @for (contact of group.contactList; track $index) {
+                                    <span 
+                                        class="contact-init" 
+                                        [style.background-color]="getInitialsColor($index)"
+                                        [style.color]="'white'"
+                                    >
+                                        {{contact.firstName.charAt(0) + contact.lastName.charAt(0)}}
+                                    </span>
+                                }
+                            </div>
+                        </span>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="templates">
+    <div class="container">
+        <div class="search">
+            <span class="material-symbols-outlined">search</span>
+            <input [(ngModel)]="searchKeyword" type="search" placeholder="Search templates">
+        </div>
+        <div class="template-list">
+            @for (template of allTemplate; track $index) {
+                <button (click)="sendTemplateToMiniEditor(template)">
+                    {{template.name}}
+                </button>
+            }
+        </div>
+    </div>
+</div>

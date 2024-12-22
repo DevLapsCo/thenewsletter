@@ -17,7 +17,7 @@ import { SidebarModule } from 'primeng/sidebar';
 @Component({
   selector: 'app-new-mail',
   standalone: true,
-  imports: [QuillModule, NgIf, SidebarModule,  NgFor, FormsModule, ChipsModule, EmailChipsComponent, LoaderComponent],
+  imports: [  SidebarModule,  NgFor, FormsModule, ChipsModule, EmailChipsComponent, LoaderComponent],
   templateUrl: './new-mail.component.html',
   styleUrl: './new-mail.component.css'
 })
@@ -122,26 +122,26 @@ getAllTemplates(){
 
 htmlBody! : string;
 
-  quillConfig = {
-    modules: {
-      toolbar: [
-        ['bold', 'italic', 'underline', 'strike'],
-        ['blockquote', 'code-block'],
-        [{ 'header': 1 }, { 'header': 2 }],
-        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-        [{ 'color': [] }, { 'background': [] }],
-        ['link', 'image']
-      ]
-    },
-    formats: [
-      'bold', 'italic', 'underline', 'strike',
-      'blockquote', 'code-block',
-      'header',
-      'list', 'bullet',
-      'color', 'background',
-      'link', 'image'
-    ]
-  };
+  // quillConfig = {
+  //   modules: {
+  //     toolbar: [
+  //       ['bold', 'italic', 'underline', 'strike'],
+  //       ['blockquote', 'code-block'],
+  //       [{ 'header': 1 }, { 'header': 2 }],
+  //       [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+  //       [{ 'color': [] }, { 'background': [] }],
+  //       ['link', 'image']
+  //     ]
+  //   },
+  //   formats: [
+  //     'bold', 'italic', 'underline', 'strike',
+  //     'blockquote', 'code-block',
+  //     'header',
+  //     'list', 'bullet',
+  //     'color', 'background',
+  //     'link', 'image'
+  //   ]
+  // };
 
   onEditorCreated(quill: any) {
     // console.log('Editor created', quill);

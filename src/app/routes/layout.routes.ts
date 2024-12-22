@@ -6,6 +6,12 @@ import { SentEmailComponent } from "../pages/dashboard/sent/components/sent-emai
 import { SettingsComponent } from "../pages/dashboard/settings/settings.component";
 import { EmailConfigComponent } from "../pages/dashboard/email-config/email-config.component";
 import { AddTemplatesComponent } from "../pages/dashboard/add-templates/add-templates.component";
+import { EmailBuilderComponent } from "../pages/modules/email-builder/email-builder.component";
+import { TemplatesLayoutsComponent } from "../pages/modules/email-builder/components/templates-layouts/templates-layouts.component";
+import { FilesComponent } from "../pages/modules/email-builder/components/files/files.component";
+import { SessionComponent } from "../pages/dashboard/new-mail/sub-pages/session/session.component";
+import { EditAndCampaignComponent } from "../pages/dashboard/new-mail/sub-pages/edit-and-campaign/edit-and-campaign.component";
+import { AudienceComponent } from "../pages/dashboard/audience/audience.component";
 
 export const routes : Routes = [
     {
@@ -15,11 +21,13 @@ export const routes : Routes = [
     },
     {
         path: 'overview',
-        component: OverviewComponent
+        component: OverviewComponent,
     },
     {
         path: 'new-email',
-        component: NewMailComponent
+        component: SessionComponent,
+        title: 'New Email'     
+
     },
     {
         path: 'email-config',
@@ -32,6 +40,10 @@ export const routes : Routes = [
     {
         path: 'add-template',
         component: AddTemplatesComponent
+    },
+    {
+        path: 'audience',
+        component: AudienceComponent
     },
     {
         path: 'sent',

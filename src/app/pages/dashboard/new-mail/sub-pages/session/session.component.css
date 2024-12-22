@@ -1,0 +1,90 @@
+
+
+.session{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.container{
+    width: 100%;
+    max-inline-size: 60rem;
+    margin-block-start: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.head{
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+    grid-gap: 20px;
+}
+
+.grid button{
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 5px;
+    background-color: #000;
+    color: #fff;
+    padding: 0 50px;
+}
+
+.grid button h2{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 25px;
+}
+
+.grid button p{
+    text-align: left;
+}
+
+/* Icons settings */
+
+.material-symbols-outlined{
+    font-variation-settings: 'FILL' 1;
+    color: #2F76FF;
+}
+
+
+/* Animating progress bar */
+
+::ng-deep .animated-progress-bar .mat-progress-bar-fill::after {
+    animation: mat-progress-bar-fill-indeterminate 2000ms infinite linear;
+}
+  
+::ng-deep .animated-progress-bar .mat-progress-bar-buffer {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 1300px) {
+    .container{
+        padding: 0 50px;
+    }
+}
+
+@media screen and (max-width: 1150px) {
+    .container{
+        padding: 0 50px;
+    }
+
+    .grid{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .grid button{
+        height: auto;
+        padding: 30px 50px;
+    }
+}

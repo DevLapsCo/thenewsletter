@@ -1,0 +1,30 @@
+<app-nav-bar-dashboard/>
+@if (sendEmail()) {
+    <mat-progress-bar class="animated-progress-bar" mode="indeterminate"></mat-progress-bar>
+  }
+
+<div class="instant">
+    <div class="container">
+        <div class="top">
+            <h2>Instantly send your word across...</h2>
+            @if(selectedTime != null){
+                <div class="scheduled-date">
+                    <span 
+                      class="scheduled-date-container"
+                    >
+                      Will go live on {{ selectedTime | date }}
+                    </span>
+                  </div>
+                }
+            <div class="actions">
+                <button (click)="openCalendarScheduler()"><span class="material-symbols-outlined">today</span> <span class="label">Schedule</span></button>
+                <button (click)="decidingEmailTypeSending()"><span class="material-symbols-outlined">campaign</span> <span class="label">Campaign</span></button>
+            </div>
+        </div>
+        <div class="deliver">
+            <app-templates-mini (seletedTemplate)="emitSelectedTemplate($event)" />
+            <app-editor-viewer [template]="selectedTemplate" class="editor"/>
+            <app-groups-mini (groupId)="getGroupId($event)" class="groups"/>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+ <!-- Only show progress bar when creatingNewTemplate is true -->
+ @if (creatingNewTemplate()) {
+    <mat-progress-bar class="animated-progress-bar" mode="indeterminate"></mat-progress-bar>
+  }
+
+<div class="session">
+    <div class="container">
+        <h2 class="head">What would you want to start with?</h2>
+        <div class="grid">
+            <button (click)="instantLetter()">
+                <h2>Instant Letter<span class="material-symbols-outlined">send</span></h2>
+                <p>Select a template, choose your audience group and send!</p>
+            </button>
+            <button (click)="createNewTemplate()">
+                <h2>Create New <span class="material-symbols-outlined">new_releases</span></h2>
+                <p>Create a new email template to campaign with.</p>
+            </button>
+            <!-- <button>
+                <h2>Update and Send <span class="material-symbols-outlined">sync_alt</span></h2>
+                <p>Make some changes to a previous template and use it for your campaigns</p>
+            </button> -->
+            <!-- <button>
+                <h2>Duplicate <span class="material-symbols-outlined">difference</span></h2>
+                <p>Create a new email template from an old one.</p>
+            </button> -->
+        </div>
+    </div>
+</div>

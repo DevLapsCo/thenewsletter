@@ -1,20 +1,16 @@
 <div class="nav">
     <div class="first">
-        <div class="logo">
-            <span>The NewsLetter</span>
-        </div>
         <div class="menu">
             <ul>
-                <li><a class="new-email" [routerLink]="['new-email']"><span class="material-symbols-outlined">add</span> New Mail</a></li>
-                <!-- <li><a class="navigate" [routerLink]="['overview']">Overview</a></li> -->
-                <li><a class="navigate" [routerLink]="['sent']">Sent</a></li>
-                <!-- <li><a class="navigate">Draft</a></li> -->
-                <!-- <li><a>Templates</a></li> -->
-                <li><a class="navigate" [routerLink]="['email-config']">Email Configuration</a></li>
-                <!-- <li><a class="navigate" [routerLink]="['settings']">Settings</a></li> -->
-                @if (isAdmin) {
-                    <li><a class="navigate" [routerLink]="['add-template']">Add Template</a></li>
-                }
+                <li><a class="new-email" [routerLink]="['new-email']"><span class="material-symbols-outlined">mail</span> New Email</a></li>
+                <!-- <li><a class="navigate" [routerLinkActive]="['activeRoute']" [routerLink]="['overview']"><span class="material-symbols-outlined">dashboard_2</span>Overview</a></li> -->
+                <!-- <li><a class="navigate" [routerLinkActive]="['activeRoute']" [routerLink]="['campaigns']"><span class="material-symbols-outlined">campaign</span>Campaigns</a></li> -->
+                <li><a class="navigate" [routerLinkActive]="['activeRoute']" [routerLink]="['audience']"><span class="material-symbols-outlined">groups</span>Audience</a></li>
+                <!-- <li><a class="navigate" [routerLinkActive]="['activeRoute']" [routerLink]="['automations']"><span class="material-symbols-outlined">automation</span>Automations</a></li> -->
+                <!-- <li><a class="navigate" [routerLinkActive]="['activeRoute']" [routerLink]="['services']"><span class="material-symbols-outlined">select_window</span>Services</a></li> -->
+                <li><a class="navigate" [routerLinkActive]="['activeRoute']" [routerLink]="['settings']"><span class="material-symbols-outlined">settings</span>Settings</a></li>
+                <!-- <li><a class="navigate" [routerLink]="['sent']">Sent</a></li> -->
+                <li><a class="navigate" [routerLinkActive]="['activeRoute']" [routerLink]="['email-config']"><span class="material-symbols-outlined">manufacturing</span>Email Configuration</a></li>
             </ul>
         </div>
     </div>
@@ -22,7 +18,7 @@
     <div class="last">
         <div class="menu">
             <ul>
-                <li><a class="navigate">
+                <li><a class="navigat">
                     <div (click)="logout()" class="logout">
                         <span class="material-symbols-outlined">logout</span>
                         <span>Logout</span>
@@ -42,13 +38,12 @@
     </div>
 </div>
 
-<div class="small-nav">
+<!-- <div class="small-nav">
    <div class="left">
     <span (click)="toggleNavBar()" class="material-symbols-outlined">menu</span>
     <span>The NewsLetter</span>
    </div>
    <div class="right">
-           <!-- <span (click)="logout()" class="logout-small material-symbols-outlined">logout</span> -->
         <span class="small">@if(userData != null){
             {{userData.firstName.charAt(0).toUpperCase() + (userData.lastName ? userData?.lastName.charAt(0).toUpperCase() : "")}}   
         } @else {
@@ -56,31 +51,27 @@
         }
     </span>
    </div>
-</div>
+</div> -->
 
 <p-sidebar [(visible)]="sidebarVisible">
     <div class="nav-small">
         <div class="first">
-            <div class="logo">
-                <span>The NewsLetter</span>
-            </div>
             <div class="menu">
                 <ul>
-                    <li><a  class="new-email" [routerLink]="['new-email']"><span class="material-symbols-outlined">add</span> New Mail</a></li>
-                    <!-- <li><a class="navigate" [routerLink]="['overview']">Overview</a></li> -->
-                    <li><a [routerLinkActive]="['activeRoute']" class="navigate" [routerLink]="['sent']">Sent</a></li>
-                    <!-- <li><a class="navigate">Draft</a></li> -->
-                    <!-- <li><a>Templates</a></li> -->
-                    <li><a [routerLinkActive]="['activeRoute']" class="navigate" [routerLink]="['email-config']">Email Configuration</a></li>
-                    <!-- <li><a class="navigate" [routerLink]="['settings']">Settings</a></li> -->
-                    @if (isAdmin) {
-                        <li><a [routerLinkActive]="['activeRoute']" class="navigate" [routerLink]="['add-template']">Add Template</a></li>
-                    }
+                    <li><a class="new-email" [routerLink]="['new-email']"><span class="material-symbols-outlined">mail</span> New Email</a></li>
+                    <li><a class="navigate" [routerLinkActive]="['activeRoute']" [routerLink]="['overview']"><span class="material-symbols-outlined">dashboard_2</span>Overview</a></li>
+                    <li><a class="navigate" [routerLinkActive]="['activeRoute']" [routerLink]="['campaigns']"><span class="material-symbols-outlined">campaign</span>Campaigns</a></li>
+                    <li><a class="navigate" [routerLinkActive]="['activeRoute']" [routerLink]="['audience']"><span class="material-symbols-outlined">groups</span>Audience</a></li>
+                    <li><a class="navigate" [routerLinkActive]="['activeRoute']" [routerLink]="['automations']"><span class="material-symbols-outlined">automation</span>Automations</a></li>
+                    <li><a class="navigate" [routerLinkActive]="['activeRoute']" [routerLink]="['services']"><span class="material-symbols-outlined">select_window</span>Services</a></li>
+                    <li><a class="navigate" [routerLinkActive]="['activeRoute']" [routerLink]="['settings']"><span class="material-symbols-outlined">settings</span>Settings</a></li>
+                    <li><a class="navigate" [routerLink]="['sent']">Sent</a></li>
+                    <li><a class="navigate" [routerLink]="['email-config']">Email Configuration</a></li>
                 </ul>
             </div>
         </div>
         
-        <div class="last">
+        <!-- <div class="last">
             <div class="menu">
                 <ul>
                     <li><a class="navigate">
@@ -100,7 +91,7 @@
                     </a></li>
                 </ul>
             </div>
-        </div>
+        </div> -->
     </div>
     
 </p-sidebar>

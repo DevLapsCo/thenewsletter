@@ -1,0 +1,32 @@
+<div class="head">
+    <h2>Add your group of contacts</h2>
+    <label for="file" class="material-symbols-outlined" >upload</label>
+    <input type="file" id="file" #fileInput (change)="onFileUpload($event)" style="display: none;">
+</div>
+<div class="forms">
+  <input type="text" [(ngModel)]="groupName" placeholder="Group Name" />
+
+  <div class="contacts">
+    <button class="add-contact" (click)="addManualContact()">
+      <span class="material-symbols-outlined">add</span> <span>Add Contact</span>
+    </button>
+
+    <div *ngFor="let contact of localAddedContacts; let i = index" class="contact-card">
+      <span class="contact-initials">{{ contact.firstName?.charAt(0).toUpperCase() || 'N' }}</span>
+      <div class="heading">
+        <input [(ngModel)]="contact.firstName" placeholder="First Name" />
+        <input [(ngModel)]="contact.lastName" placeholder="Last Name" />
+        <input [(ngModel)]="contact.email" placeholder="Email" />
+        <!-- <input [(ngModel)]="contact.phoneNumber" placeholder="Phone Number" /> -->
+        <button class="contact-button" (click)="removeContact(i)">Remove</button>
+      </div>
+    </div>
+  </div>
+
+  @if (isAddingContact()) {
+    <button class="submit-button">Adding your contact</button>
+  } @else {
+    <button class="submit-button" (click)="submitGroup()">Submit Group</button>
+  }
+
+</div>

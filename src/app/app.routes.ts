@@ -9,6 +9,10 @@ import { PrivacyPolicyComponent } from './pages/compliance/google-privacy-policy
 import { TermsOfServiceComponent } from './pages/compliance/terms-of-use/terms-of-use.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page-v1.component';
 import { PricingComponent } from './pages/landing-page/pricing-page-v1.component';
+import { EmailBuilderComponent } from './pages/modules/email-builder/email-builder.component';
+import { FilesComponent } from './pages/modules/email-builder/components/files/files.component';
+import { TemplatesLayoutsComponent } from './pages/modules/email-builder/components/templates-layouts/templates-layouts.component';
+import { InstantComponent } from './pages/modules/instant/instant.component';
 
 export const routes: Routes = [
     {
@@ -38,6 +42,26 @@ export const routes: Routes = [
     {
         path: 'privacy',
         component: PrivacyPolicyComponent
+    },
+    {
+        path: 'builder',
+        component: EmailBuilderComponent,
+        canActivate: [authGuard],
+        children: [
+            {
+                path: 'templates-layouts',
+                component: TemplatesLayoutsComponent
+            },
+            {
+                path: 'files',
+                component: FilesComponent
+            }
+        ]
+    },
+    {
+        path: 'instant',
+        component: InstantComponent,
+        canActivate: [authGuard],
     },
     {
         path: 'terms-of-service',

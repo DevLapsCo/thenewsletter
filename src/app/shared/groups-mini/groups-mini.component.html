@@ -1,0 +1,40 @@
+<div class="groups">
+    <div class="container">
+        <h3>Select your audience</h3>
+        <div class="search">
+            <span class="material-symbols-outlined">search</span>
+            <input [(ngModel)]="searchKeyword" type="search" placeholder="Search groups">
+        </div>
+        <div class="group-list">
+           @if(isLoading()){
+              isLoading...
+           } @else if(filteredGroups().length === 0){
+              <div class="group">
+                 <span>No Groups Found</span>
+              </div>
+           } @else {
+            @for (group of filteredGroups(); track $index) {
+                <span 
+                (click)="selectedGroup(group.id)" 
+                class="group"
+                [class.selected]="selectedGroupId === group.id">
+                
+                    <span class="name">{{group.name}}</span>
+                    <p class="notes">{{group.notes}}</p>
+                    <div class="contact-initials">
+                        @for (contact of group.contactList; track $index) {
+                            <span
+                                class="contact-init"
+                                [style.background-color]="getInitialsColor($index)"
+                                [style.color]="'white'"
+                            >
+                                {{contact.firstName.charAt(0) + contact.lastName.charAt(0)}}
+                            </span>
+                        }
+                    </div>
+                </span>
+            }
+           }
+        </div>
+    </div>
+</div>

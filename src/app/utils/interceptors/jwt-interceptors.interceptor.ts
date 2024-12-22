@@ -9,7 +9,7 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
   }
   
   // Get the JWT token from localStorage
-  const token = localStorage.getItem('jwt_tkn');
+  const token = sessionStorage.getItem('jwt_tkn');
   // var refreshToken = inject(UserService)
 
   // refreshToken.refreshToken()

@@ -45,19 +45,19 @@ export class AuthorizeService {
   }
 
   storeJwt(token: string) {
-    localStorage.setItem('jwt_tkn', token);
+    sessionStorage.setItem('jwt_tkn', token);
   }
 
   generalStorageFtn(value: string, key: string) {
-    localStorage.setItem(key, value);
+    sessionStorage.setItem(key, value);
   }
 
   generalGetStorageFtn(key: string) {
-    return localStorage.getItem(key);
+    return sessionStorage.getItem(key);
   }
 
   isTokenPresent(): boolean {
-    const token = localStorage.getItem('jwt_tkn');
+    const token = sessionStorage.getItem('jwt_tkn');
     return !!token;
   }
 }

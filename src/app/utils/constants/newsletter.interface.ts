@@ -13,3 +13,14 @@ export interface TemplatePayload {
   templateKeyName: string;
   templateFile: File;
 }
+
+export interface Template {
+  id: string;
+  name: string;
+  htmlBody?: string;
+  css: string;
+  html: string;
+  userId: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}

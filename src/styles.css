@@ -59,6 +59,9 @@ a{
     text-overflow: ellipsis;
 }
 
+
+
+
 @tailwind base;
 /* @tailwind components; */
 @tailwind utilities;

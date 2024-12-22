@@ -1,0 +1,14 @@
+.template-viewer {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+  } 
+
+  ::ng-deep .gjs-cv-canvas{
+    position: relative !important;
+    width: 100%;
+    height: 100%;
+    top: 0;
+}

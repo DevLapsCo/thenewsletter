@@ -1,0 +1,81 @@
+ <div class="email-builder-container">
+    <div class="top-panel">
+        <div class="container">
+            <div class="logo">
+                <h2><a [routerLink]="['/dashboard/new-email']">The NewsLetter</a> \
+                 @if(showSavingIndicator()){
+                   <p-skeleton width="10rem" styleClass="mb-2" borderRadius="16px" />                
+                  } @else {
+                   <input 
+                   [(ngModel)]="template.name"
+                   (ngModelChange)="updateNameAfterChangeDetection()"
+                   [disabled]="savingTemplate()"
+                 >
+                }
+
+
+                @if (savingTemplate()) {
+                  <mat-spinner diameter="20"></mat-spinner>
+                }
+                </h2>
+            </div>
+    
+            <div class="toolbar">
+              <div class="panel__devices"></div>   
+              <div class="panel__basic-actions"></div>
+              <button (click)="clearEditor()" class="material-symbols-outlined">delete</button>
+            </div>
+    
+            <div class="action-buttons">
+                <div class="template-buttons">
+                    <button (click)="sendTest()" class="send-test">Send Test</button>
+                    <button (click)="saveTemplate()" class="save send-test">Save</button>
+                </div>
+                <div class="user-details">
+                    <button class="material-symbols-outlined">
+                        notifications
+                        <span class="badge"></span>
+                    </button>
+                    <button class="user-initial">P</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="builder">
+        <div class="side-nav">
+            <ul>
+                <li><a (click)="toggleROutlet = true" [routerLinkActive]="['active']" [routerLink]="['templates-layouts']" class="material-symbols-outlined">description</a></li>
+                <li><a (click)="toggleROutlet = true" [routerLinkActive]="['active']" [routerLink]="['files']" class="material-symbols-outlined">folder_open</a></li>
+                <li><a (click)="toggleRouterOutlet()" class="material-symbols-outlined cursor-pointer">first_page</a></li>
+            </ul>
+        </div>
+        <!-- For other pages -->
+       @if(toggleROutlet){
+        <div class="router-files">
+          <router-outlet/>
+        </div>
+       }
+
+        <!-- Editor -->
+        <div class="editor-main">
+         
+          <div class="editor-row">
+            <div class="editor-canvas">
+              <div id="gjs"></div>
+            </div>
+            <div class="panels">
+              <!-- <div class="panel__top"></div> -->
+              <div class="panel__switcher"></div>
+              <div class="panel__right">
+                <div class="layers-container"></div>
+                <div class="styles-container"></div>
+                <div class="block-container"></div>
+                <div class="traits-container"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+</div> 
